@@ -1,0 +1,7 @@
+## Interface: 90002
+## Title: Adventure Logger
+## Notes: Log results from mission table adventures.
+## Author: Aronson
+## Version: 1.0
+## SavedVariables: AL_Logs
+Main.lua
