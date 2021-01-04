@@ -8,7 +8,9 @@
             "type": "string",
             "enum": [
                 "all-enemies",
+                "all-adjacent-enemies",
                 "all-melee-enemies",
+                "all-ranged-enemies",
                 "closest-enemy",
                 "closest-enemy-cone",
                 "farthest-enemy",
@@ -18,6 +20,7 @@
                 "all-ranged-allies",
                 "adjacent-ally",
                 "closest-ally",
+                "random-ally",
                 "self"
             ]
         },
@@ -72,6 +75,9 @@
                     "type": "number"
                 },
                 "healthBonusAmount": {
+                    "type": "number"
+                },
+                "counterDamageAmount": {
                     "type": "number"
                 },
                 "helpful": {

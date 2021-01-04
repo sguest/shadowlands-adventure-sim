@@ -17,6 +17,31 @@
             "spells": [78]
         },
         {
+            "name": "Pelodis",
+            "covenant": "Kyrian",
+            "spells": [76]
+        },
+        {
+            "name": "Pelagos",
+            "covenant": "Kyrian",
+            "spells": [87, 88]
+        },
+        {
+            "name": "Kythekios",
+            "covenant": "Kyrian",
+            "spells": [25]
+        },
+        {
+            "name": "Kleia",
+            "covenant": "Kyrian",
+            "spells": [83, 82]
+        },
+        {
+            "name": "Teliah",
+            "covenant": "Kyrian",
+            "spells": [24]
+        },
+        {
             "name": "Dreamweaver",
             "covenant": "Night Fae",
             "spells": [103, 104]

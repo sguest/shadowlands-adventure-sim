@@ -54,6 +54,18 @@
             "health": 1700,
             "attack": 130,
             "spells": [146]
+        },
+        {
+            "name": "Befouler Ahnqat",
+            "health": 3740,
+            "attack": 132,
+            "spells": [218]
+        },
+        {
+            "name": "Necrotic Ritualist",
+            "health": 1340,
+            "attack": 112,
+            "spells": [209]
         }
     ]
 }

@@ -1,5 +1,39 @@
 {
     "$schema": "./spells.schema.json",
+    "24": {
+        "name": "Shining Spear",
+        "cooldown": 2,
+        "targets": "farthest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1.5
+            },
+            {
+                "type": "heal",
+                "amount": 0.2,
+                "targets": "closest-ally"
+            }
+        ]
+    },
+    "25": {
+        "name": "Whirling Fists",
+        "cooldown": 2,
+        "targets": "all-melee-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 0.5
+            },
+            {
+                "type": "aura",
+                "duration": 3,
+                "attackFactor": 0.16,
+                "targets": "self",
+                "helpful": true
+            }
+        ]
+    },
     "26": {
         "name": "Physiker's Potion",
         "cooldown": 3,
@@ -54,6 +88,17 @@
             }
         ]
     },
+    "76": {
+        "name": "Phalynx Flash",
+        "cooldown": 3,
+        "targets": "farthest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1.5
+            }
+        ]
+    },
     "77": {
         "name": "Potions of Penultimate Power",
         "cooldown": 5,
@@ -75,6 +120,58 @@
             {
                 "type": "damage",
                 "amount": 0.3
+            }
+        ]
+    },
+    "82": {
+        "name": "Mace to Hand",
+        "cooldown": 0,
+        "targets": "self",
+        "effects": [
+            {
+                "type": "aura",
+                "duration": -1,
+                "counterDamageAmount": 0.25
+            }
+        ]
+    },
+    "83": {
+        "name": "Lead the Charge",
+        "cooldown": 3,
+        "targets": "all-adjacent-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1.2
+            }
+        ]
+    },
+    "87": {
+        "name": "Doubt Defied",
+        "cooldown": 2,
+        "targets": "all-ranged-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 0.6
+            }
+        ]
+    },
+    "88": {
+        "name": "Combat Meditation",
+        "cooldown": 3,
+        "targets": "self",
+        "effects": [
+            {
+                "type": "aura",
+                "attackFactor": 0.3,
+                "duration": 3,
+                "helpful": true
+            },
+            {
+                "type": "damage",
+                "amount": 0.4,
+                "targets": "all-enemies"
             }
         ]
     },
@@ -259,6 +356,30 @@
                 "type": "aura",
                 "duration": 1,
                 "attackFactor": -0.5
+            }
+        ]
+    },
+    "209": {
+        "name": "Ritual Fervor",
+        "cooldown": 2,
+        "targets": "random-ally",
+        "effects": [
+            {
+                "type": "aura",
+                "duration": 1,
+                "attackFactor": 0.5
+            }
+        ]
+    },
+    "218": {
+        "name": "Ritual of Bone",
+        "cooldown": 5,
+        "targets": "self",
+        "effects": [
+            {
+                "type": "aura",
+                "duration": 2,
+                "damageTakenFactor": -0.5
             }
         ]
     },

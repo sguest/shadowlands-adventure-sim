@@ -30,6 +30,27 @@
             }
         ]
     },
+    "2230": {
+        "name": "Campaign: Ahnqat's Darkness",
+        "enemies": [
+            {
+                "name": "Befouler Ahnqat",
+                "position": 9
+            },
+            {
+                "name": "Necrotic Ritualist",
+                "position": 10
+            },
+            {
+                "name": "Necrotic Ritualist",
+                "position": 11
+            },
+            {
+                "name": "Necrotic Ritualist",
+                "position": 12
+            }
+        ]
+    },
     "2247": {
         "name": "Campaign: Charthox the Indomitable",
         "enemies": [
