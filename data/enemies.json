@@ -66,6 +66,12 @@
             "health": 1340,
             "attack": 112,
             "spells": [209]
+        },
+        {
+            "name": "Starved Etherwyrm",
+            "health": 1330,
+            "attack": 104,
+            "spells": [138]
         }
     ]
 }

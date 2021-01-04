@@ -9,6 +9,7 @@
             "enum": [
                 "all-enemies",
                 "all-adjacent-enemies",
+                "all-adjacent-melee-enemies",
                 "all-melee-enemies",
                 "all-ranged-enemies",
                 "closest-enemy",

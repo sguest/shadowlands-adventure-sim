@@ -294,6 +294,17 @@
             }
         ]
     },
+    "138": {
+        "name": "Tail lash",
+        "cooldown": 2,
+        "targets": "all-adjacent-melee-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 0.3
+            }
+        ]
+    },
     "145": {
         "name": "Shield Bash",
         "cooldown": 4,
