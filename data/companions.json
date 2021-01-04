@@ -15,6 +15,31 @@
             "name": "Chalkyth",
             "covenant": "Ardenweald",
             "spells": [94]
+        },
+        {
+            "name": "Yira'lya",
+            "covenant": "Ardenweald",
+            "spells": [96]
+        },
+        {
+            "name": "Guardian Kota",
+            "covenant": "Ardenweald",
+            "spells": [97]
+        },
+        {
+            "name": "Croman",
+            "covenant": "Neutral",
+            "spells": [245]
+        },
+        {
+            "name": "Meatball",
+            "covenant": "Neutral",
+            "spells": [244]
+        },
+        {
+            "name": "Niya",
+            "covenant": "Ardenweald",
+            "spells": [89, 90]
         }
     ]
 }

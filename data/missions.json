@@ -1,8 +1,20 @@
 {
     "$schema": "./missions.schema.json",
+    "2216": {
+        "name": "Misguided Monstrosity",
+        "enemies": [
+            {
+                "name": "Callous Monstrosity",
+                "position": 5
+            },
+            {
+                "name": "Callous Monstrosity",
+                "position": 8
+            }
+        ]
+    },
     "2247": {
         "name": "Campaign: Charthox the Indomitable",
-        "level": 60,
         "enemies": [
             {
                 "name": "Invading Riftkeeper",
@@ -15,6 +27,27 @@
             {
                 "name": "Charthox",
                 "position": 7
+            }
+        ]
+    },
+    "2293": {
+        "name": "Seed Thieves",
+        "enemies": [
+            {
+                "name": "Seed Stealer",
+                "position": 10
+            },
+            {
+                "name": "Seed Stealer",
+                "position": 11
+            },
+            {
+                "name": "Seed Harvester",
+                "position": 9
+            },
+            {
+                "name": "Seed Harvester",
+                "position": 12
             }
         ]
     }

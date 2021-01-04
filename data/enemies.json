@@ -12,6 +12,24 @@
             "health": 5110,
             "attack": 132,
             "spells": [187]
+        },
+        {
+            "name": "Callous Monstrosity",
+            "health": 1530,
+            "attack": 94,
+            "spells": [200]
+        },
+        {
+            "name": "Seed Stealer",
+            "health": 1750,
+            "attack": 140,
+            "spells": [259]
+        },
+        {
+            "name": "Seed Harvester",
+            "health": 1750,
+            "attack": 145,
+            "spells": [260]
         }
     ]
 }

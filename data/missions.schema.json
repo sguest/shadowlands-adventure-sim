@@ -23,9 +23,6 @@
                 "name": {
                     "type": "string"
                 },
-                "level": {
-                    "type": "number"
-                },
                 "enemies": {
                     "type": "array",
                     "items": { 
@@ -35,7 +32,7 @@
                 }
             },
             "additionalProperties": false,
-            "required": [ "name", "level", "enemies" ]
+            "required": [ "name", "enemies" ]
         }
     },
     "properties": {

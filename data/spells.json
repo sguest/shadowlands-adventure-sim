@@ -19,6 +19,31 @@
             }
         ]
     },
+    "89": {
+        "name": "Spiked Burr Trap",
+        "cooldown": 4,
+        "targets": "farthest-enemy",
+        "effects": [
+            {
+                "type": "dot",
+                "amount": 0.4,
+                "duration": 2
+            }
+        ]
+    },
+    "90": {
+        "name": "Invigorating Herbs",
+        "cooldown": 0,
+        "targets": "all-adjacent-allies",
+        "effects": [
+            {
+                "type": "aura",
+                "duration": 6,
+                "attackFactor": 0.2,
+                "helpful": true
+            }
+        ]
+    },
     "94": {
         "name": "Icespore Spear",
         "cooldown": 4,
@@ -29,6 +54,33 @@
                 "duration": 3,
                 "delay": 1,
                 "amount": 0.3
+            }
+        ]
+    },
+    "96": {
+        "name": "Insect Swarm",
+        "cooldown": 4,
+        "targets": "farthest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 0.4
+            },
+            {
+                "type": "aura",
+                "duration": 2,
+                "attackFactor": -0.2
+            }
+        ]
+    },
+    "97": {
+        "name": "Flashing Arrows",
+        "cooldown": 2,
+        "targets": "closest-enemy-cone",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 0.9
             }
         ]
     },
@@ -98,6 +150,81 @@
                 "duration": 2,
                 "period": 2,
                 "amount": 0.5
+            }
+        ]
+    },
+    "200": {
+        "name": "Stunning Swipe",
+        "cooldown": 4,
+        "targets": "all-melee-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1
+            },
+            {
+                "type": "aura",
+                "duration": 1,
+                "attackFactor": -0.5
+            }
+        ]
+    },
+    "244": {
+        "name": "Meatball Mad!",
+        "cooldown": 3,
+        "delay": 1,
+        "targets": "self",
+        "effects": [
+            {
+                "type": "aura",
+                "duration": 2,
+                "attackBonusAmount": 2,
+                "helpful": true
+            },
+            {
+                "type": "aura",
+                "duration": 2,
+                "damageTakenBonusAmount": 0.3
+            },
+            {
+                "type": "damage",
+                "amount": 0.3,
+                "targets": "closest-enemy"
+            }
+        ]
+    },
+    "245": {
+        "name": "Crusader Strike",
+        "cooldown": 3,
+        "targets": "closest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1.2
+            }
+        ]
+    },
+    "259": {
+        "name": "Anima Flame",
+        "cooldown": 2,
+        "targets": "closest-enemy",
+        "effects": [
+            {
+                "type": "dot",
+                "amount": 0.3,
+                "duration": 3,
+                "delay": 3
+            }
+        ]
+    },
+    "260": {
+        "name": "Anima Burst",
+        "cooldown": 3,
+        "targets": "farthest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1.5
             }
         ]
     }

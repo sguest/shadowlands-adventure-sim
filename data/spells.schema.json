@@ -4,6 +4,21 @@
     "description": "Spell data specification",
     "type": "object",
     "definitions": {
+        "targetType": {
+            "type": "string",
+            "enum": [
+                "all-enemies",
+                "all-melee-enemies",
+                "closest-enemy",
+                "closest-enemy-cone",
+                "farthest-enemy",
+                "all-allies",
+                "all-other-allies",
+                "all-adjacent-allies",
+                "adjacent-ally",
+                "self"
+            ]
+        },
         "damageEffect": {
             "properties": {
                 "type": {
@@ -11,6 +26,9 @@
                 },
                 "amount": {
                     "type": "number"
+                },
+                "targets": {
+                    "$ref": "#/definitions/targetType"
                 }
             },
             "required": [ "type", "amount" ],
@@ -24,6 +42,9 @@
                 "amount": {
                     "type": "number"
                 }
+            },
+            "targets": {
+                "$ref": "#/definitions/targetType"
             },
             "required": [ "type", "amount" ],
             "additionalProperties": false
@@ -41,7 +62,16 @@
                 },
                 "helpful": {
                     "type": "boolean"
+                },
+                "attackBonusAmount": {
+                    "type": "number"
+                },
+                "damageTakenBonusAmount": {
+                    "type": "number"
                 }
+            },
+            "targets": {
+                "$ref": "#/definitions/targetType"
             },
             "required": [ "type", "duration" ],
             "additionalProperties": false
@@ -64,6 +94,9 @@
                     "type": "number"
                 }
             },
+            "targets": {
+                "$ref": "#/definitions/targetType"
+            },
             "required": [ "duration", "amount" ],
             "additionalProperties": false
         },
@@ -84,15 +117,7 @@
                     "type": "number"
                 },
                 "targets": {
-                    "type": "string",
-                    "enum": [
-                        "all-enemies",
-                        "all-melee-enemies",
-                        "closest-enemy",
-                        "all-allies",
-                        "all-other-allies",
-                        "adjacent-ally"
-                    ]
+                    "$ref": "#/definitions/targetType"
                 },
                 "effects": {
                     "type": "array",
@@ -100,6 +125,9 @@
                         "$ref": "#/definitions/effect"
                     },
                     "minItems": 1
+                },
+                "delay": {
+                    "type": "number"
                 }
             },
             "required": [ "name", "cooldown", "targets", "effects" ],
