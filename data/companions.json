@@ -77,6 +77,11 @@
             "spells": [91]
         },
         {
+            "name": "Master Sha'lor",
+            "covenant": "Night Fae",
+            "spells": [98]
+        },
+        {
             "name": "Croman",
             "covenant": "Neutral",
             "spells": [245]

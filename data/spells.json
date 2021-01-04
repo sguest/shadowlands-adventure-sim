@@ -254,6 +254,17 @@
             }
         ]
     },
+    "98": {
+        "name": "Anima Bolt",
+        "cooldown": 1,
+        "targets": "farthest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1.2
+            }
+        ]
+    },
     "99": {
         "name": "Onslaught",
         "cooldown": 3,
@@ -291,6 +302,28 @@
                 "type": "aura",
                 "duration": 1,
                 "attackFactor": -0.1
+            }
+        ]
+    },
+    "117": {
+        "name": "Swift Slash",
+        "cooldown": 2,
+        "targets": "all-melee-enemies",
+        "effects": [
+            {
+                "type":"damage",
+                "amount": 0.4
+            }
+        ]
+    },
+    "118": {
+        "name": "Mischievous Blast",
+        "cooldown": 4,
+        "targets": "farthest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 2
             }
         ]
     },

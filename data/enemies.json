@@ -72,6 +72,18 @@
             "health": 1330,
             "attack": 104,
             "spells": [138]
+        },
+        {
+            "name": "Rotbriar Scrapper",
+            "health": 1220,
+            "attack": 128,
+            "spells": [117]
+        },
+        {
+            "name": "Rotbriar Tormentor",
+            "health": 720,
+            "attack": 128,
+            "spells": [118]
         }
     ]
 }

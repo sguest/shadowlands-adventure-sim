@@ -1,5 +1,22 @@
 {
     "$schema": "./missions.schema.json",
+    "2183": {
+        "name": "Rotbriar Rowdies",
+        "enemies": [
+            {
+                "name": "Rotbriar Scrapper",
+                "position": 6
+            },
+            {
+                "name": "Rotbriar Scrapper",
+                "position": 7
+            },
+            {
+                "name": "Rotbriar Tormentor",
+                "position": 11
+            }
+        ]
+    },
     "2199": {
         "name": "Languishing Lament",
         "enemies": [
