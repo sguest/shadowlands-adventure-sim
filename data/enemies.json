@@ -30,6 +30,18 @@
             "health": 1750,
             "attack": 145,
             "spells": [260]
+        },
+        {
+            "name": "Ash Crawler",
+            "health": 1325,
+            "attack": 109,
+            "spells": [290]
+        },
+        {
+            "name": "Greater Ash Crawler",
+            "health": 2325,
+            "attack": 109,
+            "spells": [291]
         }
     ]
 }

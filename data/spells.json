@@ -44,6 +44,18 @@
             }
         ]
     },
+    "91": {
+        "name": "Dazzledust",
+        "cooldown": 4,
+        "targets": "farthest-enemy",
+        "effects": [
+            {
+                "type": "aura",
+                "duration": 3,
+                "attackBonusAmount": -1
+            }
+        ]
+    },
     "94": {
         "name": "Icespore Spear",
         "cooldown": 4,
@@ -225,6 +237,28 @@
             {
                 "type": "damage",
                 "amount": 1.5
+            }
+        ]
+    },
+    "290": {
+        "name": "Ashen Bolt",
+        "cooldown": 3,
+        "targets": "farthest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1.5
+            }
+        ]
+    },
+    "291": {
+        "name": "Ashen Blast",
+        "cooldown": 3,
+        "targets": "all-melee-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1
             }
         ]
     }

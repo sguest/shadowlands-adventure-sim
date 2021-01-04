@@ -40,6 +40,11 @@
             "name": "Niya",
             "covenant": "Ardenweald",
             "spells": [89, 90]
+        },
+        {
+            "name": "Blisswing",
+            "covenant": "Ardenweald",
+            "spells": [91]
         }
     ]
 }

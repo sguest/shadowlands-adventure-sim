@@ -30,6 +30,31 @@
             }
         ]
     },
+    "2279": {
+        "name": "Cinderwall Incursion",
+        "enemies": [
+            {
+                "name": "Ash Crawler",
+                "position": 5
+            },
+            {
+                "name": "Ash Crawler",
+                "position": 6
+            },
+            {
+                "name": "Ash Crawler",
+                "position": 7
+            },
+            {
+                "name": "Ash Crawler",
+                "position": 8
+            },
+            {
+                "name": "Greater Ash Crawler",
+                "position": 11
+            }
+        ]
+    },
     "2293": {
         "name": "Seed Thieves",
         "enemies": [
