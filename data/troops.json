@@ -3,12 +3,12 @@
     "troops": [
         {
             "name": "Ardenweald Trapper",
-            "covenant": "Ardenweald",
+            "covenant": "Night Fae",
             "spells": [53]
         },
         {
             "name": "Kyrian Phalanx",
-            "covenant": "Bastion",
+            "covenant": "Kyrian",
             "spells": [46]
         }
     ]

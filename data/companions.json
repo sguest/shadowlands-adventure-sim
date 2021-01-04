@@ -3,52 +3,52 @@
     "companions": [
         {
             "name": "Telethakas",
-            "covenant": "Bastion",
+            "covenant": "Kyrian",
             "spells": [26]
         },
         {
             "name": "Sika",
-            "covenant": "Bastion",
+            "covenant": "Kyrian",
             "spells": [77]
         },
         {
             "name": "Clora",
-            "covenant": "Bastion",
+            "covenant": "Kyrian",
             "spells": [78]
         },
         {
             "name": "Dreamweaver",
-            "covenant": "Ardenweald",
+            "covenant": "Night Fae",
             "spells": [103, 104]
         },
         {
             "name": "Te'zan",
-            "covenant": "Ardenweald",
+            "covenant": "Night Fae",
             "spells": [99]
         },
         {
             "name": "Chalkyth",
-            "covenant": "Ardenweald",
+            "covenant": "Night Fae",
             "spells": [94]
         },
         {
             "name": "Yira'lya",
-            "covenant": "Ardenweald",
+            "covenant": "Night Fae",
             "spells": [96]
         },
         {
             "name": "Guardian Kota",
-            "covenant": "Ardenweald",
+            "covenant": "Night Fae",
             "spells": [97]
         },
         {
             "name": "Niya",
-            "covenant": "Ardenweald",
+            "covenant": "Night Fae",
             "spells": [89, 90]
         },
         {
             "name": "Blisswing",
-            "covenant": "Ardenweald",
+            "covenant": "Night Fae",
             "spells": [91]
         },
         {

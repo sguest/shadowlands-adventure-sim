@@ -11,7 +11,7 @@
                 },
                 "covenant": {
                     "type": "string",
-                    "enum": [ "Ardenweald", "Bastion", "Maldraxxus", "Revendreth", "Neutral" ]
+                    "enum": [ "Kyrian", "Necrolord", "Night Fae", "Venthyr", "Neutral" ]
                 },
                 "spells": {
                     "type": "array",
