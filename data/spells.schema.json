@@ -1,0 +1,121 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Spells",
+    "description": "Spell data specification",
+    "type": "object",
+    "definitions": {
+        "damageEffect": {
+            "properties": {
+                "type": {
+                    "const": "damage"
+                },
+                "amount": {
+                    "type": "number"
+                }
+            },
+            "required": [ "type", "amount" ],
+            "additionalProperties": false
+        },
+        "healEffect": {
+            "properties": {
+                "type": {
+                    "const": "heal"
+                },
+                "amount": {
+                    "type": "number"
+                }
+            },
+            "required": [ "type", "amount" ],
+            "additionalProperties": false
+        },
+        "auraEffect": {
+            "properties": {
+                "type": {
+                    "const": "aura"
+                },
+                "duration": {
+                    "type": "number"
+                },
+                "attackFactor": {
+                    "type": "number"
+                },
+                "helpful": {
+                    "type": "boolean"
+                }
+            },
+            "required": [ "type", "duration" ],
+            "additionalProperties": false
+        },
+        "dotEffect": {
+            "properties": {
+                "type": {
+                    "const": "dot"
+                },
+                "duration": {
+                    "type": "number"
+                },
+                "amount": {
+                    "type": "number"
+                },
+                "period": {
+                    "type": "number"
+                },
+                "delay": {
+                    "type": "number"
+                }
+            },
+            "required": [ "duration", "amount" ],
+            "additionalProperties": false
+        },
+        "effect": {
+            "anyOf": [
+                { "$ref": "#/definitions/damageEffect" },
+                { "$ref": "#/definitions/healEffect" },
+                { "$ref": "#/definitions/auraEffect" },
+                { "$ref": "#/definitions/dotEffect" }
+            ]
+        },
+        "spell": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "cooldown": {
+                    "type": "number"
+                },
+                "targets": {
+                    "type": "string",
+                    "enum": [
+                        "all-enemies",
+                        "all-melee-enemies",
+                        "closest-enemy",
+                        "all-allies",
+                        "all-other-allies",
+                        "adjacent-ally"
+                    ]
+                },
+                "effects": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/effect"
+                    },
+                    "minItems": 1
+                }
+            },
+            "required": [ "name", "cooldown", "targets", "effects" ],
+            "additionalProperties": false
+        }
+    },
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "/": {}
+    },
+    "patternProperties": {
+        "\\d+": {
+            "$ref": "#/definitions/spell"
+        }
+    },
+    "additionalProperties": false
+}

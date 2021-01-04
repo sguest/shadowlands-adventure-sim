@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Enemies",
+    "description": "Enemy data specification",
+    "type": "object",
+    "definitions": {
+        "enemy": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "health": {
+                    "type": "number"
+                },
+                "attack": {
+                    "type": "number"
+                },
+                "spells": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 1
+                }
+            },
+            "required": [ "name", "health", "attack", "spells" ],
+            "additionalProperties": false
+        }
+    },
+    "properties": {
+        "enemies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/enemy"
+            }
+        },
+        "$schema": {
+            "type": "string"
+        }
+    },
+    "additionalProperties": false
+}

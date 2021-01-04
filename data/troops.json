@@ -1,4 +1,5 @@
 {
+    "$schema": "./troops.schema.json",
     "troops": [
         {
             "name": "Ardenweald Trapper",

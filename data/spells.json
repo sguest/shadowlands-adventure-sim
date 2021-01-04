@@ -1,4 +1,5 @@
 {
+    "$schema": "./spells.schema.json",
     "53": {
         "name": "Bramble Trap",
         "cooldown": 6,
@@ -15,6 +16,30 @@
                 "type": "aura",
                 "duration": 6,
                 "attackFactor": -0.2
+            }
+        ]
+    },
+    "94": {
+        "name": "Icespore Spear",
+        "cooldown": 4,
+        "targets": "all-melee-enemies",
+        "effects": [
+            {
+                "type": "dot",
+                "duration": 3,
+                "delay": 1,
+                "amount": 0.3
+            }
+        ]
+    },
+    "99": {
+        "name": "Onslaught",
+        "cooldown": 3,
+        "targets": "all-melee-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1.4
             }
         ]
     },
@@ -71,6 +96,7 @@
             {
                 "type": "dot",
                 "duration": 2,
+                "period": 2,
                 "amount": 0.5
             }
         ]

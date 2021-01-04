@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Missions",
+    "description": "Mission data specification",
+    "type": "object",
+    "definitions": {
+        "enemy": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "position": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 12
+                }
+            },
+            "required": [ "name", "position" ],
+            "additionalProperties": false
+        },
+        "mission": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "level": {
+                    "type": "number"
+                },
+                "enemies": {
+                    "type": "array",
+                    "items": { 
+                        "$ref": "#/definitions/enemy"
+                    },
+                    "minItems": 1
+                }
+            },
+            "additionalProperties": false,
+            "required": [ "name", "level", "enemies" ]
+        }
+    },
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "/": {}
+    },
+    "patternProperties": {
+        "\\d+": {
+            "$ref": "#/definitions/mission"
+        }
+    },
+    "additionalProperties": false
+}

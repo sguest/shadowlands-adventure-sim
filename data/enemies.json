@@ -1,4 +1,5 @@
 {
+    "$schema": "./enemies.schema.json",
     "enemies": [
         {
             "name": "Invading Riftkeeper",

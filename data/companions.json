@@ -1,9 +1,20 @@
 {
+    "$schema": "./companions.schema.json",
     "companions": [
         {
             "name": "Dreamweaver",
             "covenant": "Ardenweald",
             "spells": [103, 104]
+        },
+        {
+            "name": "Te'zan",
+            "covenant": "Ardenweald",
+            "spells": [99]
+        },
+        {
+            "name": "Chalkyth",
+            "covenant": "Ardenweald",
+            "spells": [94]
         }
     ]
 }

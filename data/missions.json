@@ -1,4 +1,5 @@
 {
+    "$schema": "./missions.schema.json",
     "2247": {
         "name": "Campaign: Charthox the Indomitable",
         "level": 60,

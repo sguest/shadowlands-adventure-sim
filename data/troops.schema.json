@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Troops",
+    "description": "Troop data specification",
+    "type": "object",
+    "definitions": {
+        "troop": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "covenant": {
+                    "type": "string",
+                    "enum": [ "Ardenweald", "Bastion", "Maldraxxus", "Revendreth" ]
+                },
+                "spells": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 1
+                }
+            },
+            "required": [ "name", "covenant", "spells" ],
+            "additionalProperties": false
+        }
+    },
+    "properties": {
+        "troops": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/troop"
+            }
+        },
+        "$schema": {
+            "type": "string"
+        }
+    },
+    "additionalProperties": false
+}

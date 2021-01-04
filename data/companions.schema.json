@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Companions",
+    "description": "Companion data specification",
+    "type": "object",
+    "definitions": {
+        "companion": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "covenant": {
+                    "type": "string",
+                    "enum": [ "Ardenweald", "Bastion", "Maldraxxus", "Revendreth", "Neutral" ]
+                },
+                "spells": {
+                    "type": "array",
+                    "items": { 
+                        "type": "number"
+                    },
+                    "minItems": 1
+                }
+            },
+            "additionalProperties": false,
+            "required": [ "name", "covenant", "spells" ]
+        }
+    },
+    "properties": {
+        "companions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/companion"
+            }
+        },
+        "$schema": {
+            "type": "string"
+        }
+    },
+    "additionalProperties": false
+}
