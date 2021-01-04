@@ -16,6 +16,18 @@ function displayName(combatant) {
     return `${combatant.name} (${combatant.boardIndex})`;
 }
 
+function printSummary(combatants) {
+    for(let boardIndex in combatants) {
+        let combatant = combatants[boardIndex];
+        if(combatant.currentHealth <= 0) {
+            console.log(`\t${displayName(combatant)} is dead`)
+        }
+        else {
+            console.log(`\t${displayName(combatant)} has ${combatant.currentHealth}/${combatant.maxHealth} health`);
+        }
+    }
+}
+
 function handleEnd() {
     let mission = JSON.parse(data);
 
@@ -70,6 +82,8 @@ function handleEnd() {
 
     let combatants = {...followers, ...enemies};
 
+    printSummary(combatants);
+    console.log('');
     let round = 0;
     for(let log of mission.result.combatLog) {
         round++;
@@ -81,7 +95,7 @@ function handleEnd() {
             if(Array.isArray(event.targetInfo)) {
                 targets = event.targetInfo.map(t => ({name: displayName(combatants[t.boardIndex]), points: t.points, oldHealth: t.oldHealth, newHealth: t.newHealth}));
                 for(let target of event.targetInfo) {
-                    combatants[target.boardIndex].health = target.newHealth;
+                    combatants[target.boardIndex].currentHealth = target.newHealth;
                     combatants[target.boardIndex].maxHealth = target.maxHealth;
                 }
             }
@@ -178,15 +192,7 @@ function handleEnd() {
             }
         }
         console.log('==End of round summary==');
-        for(let boardIndex in combatants) {
-            let combatant = combatants[boardIndex];
-            if(combatant.health <= 0) {
-                console.log(`\t${displayName(combatant)} is dead`)
-            }
-            else {
-                console.log(`\t${displayName(combatant)} has ${combatant.health}/${combatant.maxHealth} health`);
-            }
-        }
+        printSummary(combatants);
         console.log('');
     }
 }
