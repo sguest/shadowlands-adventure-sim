@@ -78,7 +78,10 @@ function handleEnd() {
         for(let event of log.events) {
             let caster = combatants[event.casterBoardIndex];
             let casterName = displayName(caster);
-            let targets = event.targetInfo.map(t => ({name: displayName(combatants[t.boardIndex]), points: t.points, oldHealth: t.oldHealth, newHealth: t.newHealth}));
+            let targets = [];
+            if(Array.isArray(event.targetInfo)) {
+                targets = event.targetInfo.map(t => ({name: displayName(combatants[t.boardIndex]), points: t.points, oldHealth: t.oldHealth, newHealth: t.newHealth}));
+            }
             let spell = caster.spells[event.spellID];
 
             let auraType;
@@ -100,29 +103,24 @@ function handleEnd() {
             switch(event.type) {
                 case 0:
                 case 1:
-                    let attackType;
-                    let expectedSpellId;
-                    if(event.type === 0) {
-                        attackType = 'melee';
-                        expectedSpellId = 11;
-                    }
-                    else {
-                        attackType = 'range';
-                        expectedSpellId = 15;
-                    }
-                    console.log(`${casterName} ${attackType} attack`);
+                    console.log(`${casterName} attack (Event ${event.type}, Spell ${event.spellID})`);
                     if(event.effectIndex !== 0) {
                         console.log(`\tEFFECT INDEX IS ${event.effectIndex} NOT ZERO`);
-                    }
-                    if(event.spellID !== expectedSpellId) {
-                        console.log(`\tSPELL ID IS ${event.spellID} NOT EXPECTED ${expectedSpellId}`);
                     }
                     for(let target of targets) {
                         console.log(`\tHit ${target.name} for ${target.points}`);
                     }
                     break;
                 case 2:
-                    console.log(`${casterName} cast direct spell ${spell.name} ${effectSuffix}`);
+                case 3:
+                    let attackType;
+                    if(event.type === 2) {
+                        attackType = 'melee';
+                    }
+                    else {
+                        attackType = 'ranged';
+                    }
+                    console.log(`${casterName} cast ${attackType} spell ${spell.name} ${effectSuffix}`);
                     for(let target of targets) {
                         console.log(`\tHit ${target.name} for ${target.points}`);
                     }
@@ -168,6 +166,7 @@ function handleEnd() {
                     break;
                 default:
                     console.log('Unknown event type');
+                    console.log(`\tCaster: ${casterName}, spell ${spell.name}`);
                     console.log(`\tType: ${event.type}, School Mask: ${event.schoolMask}, Aura Type: ${event.auraType}, Effect Index: ${event.effectIndex}`)
                     for(let target of targets) {
                         console.log(`\tHit ${target.name} for ${target.points}`);
