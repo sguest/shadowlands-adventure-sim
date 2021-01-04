@@ -5,6 +5,11 @@
             "name": "Ardenweald Trapper",
             "covenant": "Ardenweald",
             "spells": [53]
+        },
+        {
+            "name": "Kyrian Phalanx",
+            "covenant": "Bastion",
+            "spells": [46]
         }
     ]
 }

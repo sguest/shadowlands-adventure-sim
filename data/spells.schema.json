@@ -15,7 +15,9 @@
                 "all-allies",
                 "all-other-allies",
                 "all-adjacent-allies",
+                "all-ranged-allies",
                 "adjacent-ally",
+                "closest-ally",
                 "self"
             ]
         },
@@ -41,10 +43,10 @@
                 },
                 "amount": {
                     "type": "number"
+                },
+                "targets": {
+                    "$ref": "#/definitions/targetType"
                 }
-            },
-            "targets": {
-                "$ref": "#/definitions/targetType"
             },
             "required": [ "type", "amount" ],
             "additionalProperties": false
@@ -60,18 +62,24 @@
                 "attackFactor": {
                     "type": "number"
                 },
-                "helpful": {
-                    "type": "boolean"
-                },
                 "attackBonusAmount": {
+                    "type": "number"
+                },
+                "damageTakenFactor": {
                     "type": "number"
                 },
                 "damageTakenBonusAmount": {
                     "type": "number"
+                },
+                "healthBonusAmount": {
+                    "type": "number"
+                },
+                "helpful": {
+                    "type": "boolean"
+                },
+                "targets": {
+                    "$ref": "#/definitions/targetType"
                 }
-            },
-            "targets": {
-                "$ref": "#/definitions/targetType"
             },
             "required": [ "type", "duration" ],
             "additionalProperties": false
@@ -92,10 +100,10 @@
                 },
                 "delay": {
                     "type": "number"
+                },
+                "targets": {
+                    "$ref": "#/definitions/targetType"
                 }
-            },
-            "targets": {
-                "$ref": "#/definitions/targetType"
             },
             "required": [ "duration", "amount" ],
             "additionalProperties": false

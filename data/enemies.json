@@ -42,6 +42,18 @@
             "health": 2325,
             "attack": 109,
             "spells": [291]
+        },
+        {
+            "name": "Forsworn Protector",
+            "health": 2700,
+            "attack": 80,
+            "spells": [145]
+        },
+        {
+            "name": "Forsworn Javelineer",
+            "health": 1700,
+            "attack": 130,
+            "spells": [146]
         }
     ]
 }

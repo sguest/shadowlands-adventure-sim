@@ -2,6 +2,21 @@
     "$schema": "./companions.schema.json",
     "companions": [
         {
+            "name": "Telethakas",
+            "covenant": "Bastion",
+            "spells": [26]
+        },
+        {
+            "name": "Sika",
+            "covenant": "Bastion",
+            "spells": [77]
+        },
+        {
+            "name": "Clora",
+            "covenant": "Bastion",
+            "spells": [78]
+        },
+        {
             "name": "Dreamweaver",
             "covenant": "Ardenweald",
             "spells": [103, 104]
@@ -27,16 +42,6 @@
             "spells": [97]
         },
         {
-            "name": "Croman",
-            "covenant": "Neutral",
-            "spells": [245]
-        },
-        {
-            "name": "Meatball",
-            "covenant": "Neutral",
-            "spells": [244]
-        },
-        {
             "name": "Niya",
             "covenant": "Ardenweald",
             "spells": [89, 90]
@@ -45,6 +50,16 @@
             "name": "Blisswing",
             "covenant": "Ardenweald",
             "spells": [91]
+        },
+        {
+            "name": "Croman",
+            "covenant": "Neutral",
+            "spells": [245]
+        },
+        {
+            "name": "Meatball",
+            "covenant": "Neutral",
+            "spells": [244]
         }
     ]
 }

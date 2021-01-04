@@ -1,5 +1,40 @@
 {
     "$schema": "./spells.schema.json",
+    "26": {
+        "name": "Physiker's Potion",
+        "cooldown": 3,
+        "targets": "closest-ally",
+        "effects": [
+            {
+                "type": "heal",
+                "amount": 0.25
+            },
+            {
+                "type": "aura",
+                "healthBonusAmount": 0.2,
+                "duration": 2,
+                "helpful": true
+            }
+        ]
+    },
+    "46": {
+        "name": "Shield of Tomorrow",
+        "cooldown": 2,
+        "targets": "self",
+        "effects": [
+            {
+                "type": "aura",
+                "damageTakenFactor": -0.1,
+                "helpful": true
+            },
+            {
+                "type": "aura",
+                "damageTakenFactor": -0.1,
+                "helpful": true,
+                "targets": "all-ranged-allies"
+            }
+        ]
+    },
     "53": {
         "name": "Bramble Trap",
         "cooldown": 6,
@@ -16,6 +51,30 @@
                 "type": "aura",
                 "duration": 6,
                 "attackFactor": -0.2
+            }
+        ]
+    },
+    "77": {
+        "name": "Potions of Penultimate Power",
+        "cooldown": 5,
+        "targets": "all-allies",
+        "effects": [
+            {
+                "type": "aura",
+                "duration": 3,
+                "attackBonusAmount": 0.2,
+                "helpful": true
+            }
+        ]
+    },
+    "78": {
+        "name": "Cleave",
+        "cooldown": 1,
+        "targets": "all-melee-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 0.3
             }
         ]
     },
@@ -133,6 +192,28 @@
                 "type": "aura",
                 "duration": 1,
                 "attackFactor": -0.1
+            }
+        ]
+    },
+    "145": {
+        "name": "Shield Bash",
+        "cooldown": 4,
+        "targets": "closest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 0.75
+            }
+        ]
+    },
+    "146": {
+        "name": "Dark Javelin",
+        "cooldown": 4,
+        "targets": "farthest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 0.75
             }
         ]
     },

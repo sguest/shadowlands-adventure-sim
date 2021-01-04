@@ -1,5 +1,22 @@
 {
     "$schema": "./missions.schema.json",
+    "2201": {
+        "name": "Forsworn Phalanx",
+        "enemies": [
+            {
+                "name": "Forsworn Protector",
+                "position": 6
+            },
+            {
+                "name": "Forsworn Protector",
+                "position": 7
+            },
+            {
+                "name": "Forsworn Javelineer",
+                "position": 10
+            }
+        ]
+    },
     "2216": {
         "name": "Misguided Monstrosity",
         "enemies": [
