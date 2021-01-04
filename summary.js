@@ -73,7 +73,6 @@ function handleEnd() {
     let round = 0;
     for(let log of mission.result.combatLog) {
         round++;
-        console.log('');
         console.log(`****Round ${round}****`)
         for(let event of log.events) {
             let caster = combatants[event.casterBoardIndex];
@@ -81,6 +80,9 @@ function handleEnd() {
             let targets = [];
             if(Array.isArray(event.targetInfo)) {
                 targets = event.targetInfo.map(t => ({name: displayName(combatants[t.boardIndex]), points: t.points, oldHealth: t.oldHealth, newHealth: t.newHealth}));
+                for(let target of event.targetInfo) {
+                    combatants[target.boardIndex].health = target.newHealth;
+                }
             }
             let spell = caster.spells[event.spellID];
 
@@ -174,6 +176,17 @@ function handleEnd() {
                     break;
             }
         }
+        console.log('==End of round summary==');
+        for(let boardIndex in combatants) {
+            let combatant = combatants[boardIndex];
+            if(combatant.health <= 0) {
+                console.log(`\t${displayName(combatant)} is dead`)
+            }
+            else {
+                console.log(`\t${displayName(combatant)} has ${combatant.health}/${combatant.maxHealth} health`);
+            }
+        }
+        console.log('');
     }
 }
 
