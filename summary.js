@@ -82,6 +82,7 @@ function handleEnd() {
                 targets = event.targetInfo.map(t => ({name: displayName(combatants[t.boardIndex]), points: t.points, oldHealth: t.oldHealth, newHealth: t.newHealth}));
                 for(let target of event.targetInfo) {
                     combatants[target.boardIndex].health = target.newHealth;
+                    combatants[target.boardIndex].maxHealth = target.maxHealth;
                 }
             }
             let spell = caster.spells[event.spellID];
