@@ -59,11 +59,13 @@
             {
                 "type": "aura",
                 "damageTakenFactor": -0.1,
+                "duration": 1,
                 "helpful": true
             },
             {
                 "type": "aura",
                 "damageTakenFactor": -0.1,
+                "duration": 1,
                 "helpful": true,
                 "targets": "all-ranged-allies"
             }
