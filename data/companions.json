@@ -1,0 +1,9 @@
+{
+    "companions": [
+        {
+            "name": "Dreamweaver",
+            "covenant": "Ardenweald",
+            "spells": [103, 104]
+        }
+    ]
+}

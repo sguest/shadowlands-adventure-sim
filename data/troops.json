@@ -1,0 +1,9 @@
+{
+    "troops": [
+        {
+            "name": "Ardenweald Trapper",
+            "covenant": "Ardenweald",
+            "spells": [53]
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "enemies": [
+        {
+            "name": "Invading Riftkeeper",
+            "health": 2110,
+            "attack": 107,
+            "spells": [169]
+        },
+        {
+            "name": "Charthox",
+            "health": 5110,
+            "attack": 132,
+            "spells": [187]
+        }
+    ]
+}

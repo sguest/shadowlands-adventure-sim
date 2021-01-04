@@ -1,0 +1,20 @@
+{
+    "2247": {
+        "name": "Campaign: Charthox the Indomitable",
+        "level": 60,
+        "enemies": [
+            {
+                "name": "Invading Riftkeeper",
+                "position": 6
+            },
+            {
+                "name": "Invading Riftkeeper",
+                "position": 7
+            },
+            {
+                "name": "Charthox",
+                "position": 7
+            }
+        ]
+    }
+}

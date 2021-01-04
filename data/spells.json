@@ -1,0 +1,78 @@
+{
+    "53": {
+        "name": "Bramble Trap",
+        "cooldown": 6,
+        "targets": "all-enemies",
+        "effects": [
+            {
+                "type": "dot",
+                "duration": 6,
+                "delay": 2,
+                "period": 2,
+                "amount": 0.1
+            },
+            {
+                "type": "aura",
+                "duration": 6,
+                "attackFactor": -0.2
+            }
+        ]
+    },
+    "103": {
+        "name": "Social Butterfly",
+        "cooldown": 4,
+        "targets": "all-other-allies",
+        "effects": [
+            {
+                "type": "aura",
+                "duration": 2,
+                "attackFactor": 1,
+                "helpful": true
+            }
+        ]
+    },
+    "104": {
+        "name": "Podtender",
+        "cooldown": 1,
+        "targets": "adjacent-ally",
+        "effects": [
+            {
+                "type": "heal",
+                "amount": 1
+            },
+            {
+                "type": "aura",
+                "duration": 1,
+                "attackFactor": -0.1
+            }
+        ]
+    },
+    "169": {
+        "name": "Consuming Strike",
+        "cooldown": 5,
+        "targets": "closest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 0.65
+            },
+            {
+                "type": "dot",
+                "duration": 3,
+                "amount": 0.5
+            }
+        ]
+    },
+    "187": {
+        "name": "Toxic Miasma",
+        "cooldown": 5,
+        "targets": "all-enemies",
+        "effects": [
+            {
+                "type": "dot",
+                "duration": 2,
+                "amount": 0.5
+            }
+        ]
+    }
+}
