@@ -72,6 +72,15 @@
             }
         ]
     },
+    "2213": {
+        "name": "Campaign: Save the Skyfoal",
+        "enemies": [
+            {
+                "name": "Dark Colossus",
+                "position": 6
+            }
+        ]
+    },
     "2216": {
         "name": "Misguided Monstrosity",
         "enemies": [

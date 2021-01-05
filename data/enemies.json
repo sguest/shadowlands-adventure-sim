@@ -60,6 +60,10 @@
         {
             "name": "Rotbriar Trickster",
             "spells": [120]
+        },
+        {
+            "name": "Dark Colossus",
+            "spells": [160]
         }
     ]
 }

@@ -372,6 +372,17 @@
             }
         ]
     },
+    "160": {
+        "name": "Seismic Slam",
+        "cooldown": 3,
+        "targets": "all-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 2
+            }
+        ]
+    },
     "169": {
         "name": "Consuming Strike",
         "cooldown": 5,
