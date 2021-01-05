@@ -17,6 +17,31 @@
             }
         ]
     },
+    "2185": {
+        "name": "Rotbriar Rampage",
+        "enemies": [
+            {
+                "name": "Rotbriar Scrapper",
+                "position": 5
+            },
+            {
+                "name": "Rotbriar Scrapper",
+                "position": 6
+            },
+            {
+                "name": "Rotbriar Scrapper",
+                "position": 7
+            },
+            {
+                "name": "Rotbriar Scrapper",
+                "position": 8
+            },
+            {
+                "name": "Rotbriar Trickster",
+                "position": 11
+            }
+        ]
+    },
     "2199": {
         "name": "Languishing Lament",
         "enemies": [

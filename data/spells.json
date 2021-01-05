@@ -327,6 +327,18 @@
             }
         ]
     },
+    "120": {
+        "name": "Goading Motivation",
+        "cooldown": 2,
+        "targets": "random-enemy",
+        "effects": [
+            {
+                "type": "aura",
+                "duration": 2,
+                "helpful": true
+            }
+        ]
+    },
     "138": {
         "name": "Tail lash",
         "cooldown": 2,

@@ -15,6 +15,7 @@
                 "closest-enemy",
                 "closest-enemy-cone",
                 "farthest-enemy",
+                "random-enemy",
                 "all-allies",
                 "all-other-allies",
                 "all-adjacent-allies",

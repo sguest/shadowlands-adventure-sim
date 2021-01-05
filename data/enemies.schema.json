@@ -9,12 +9,6 @@
                 "name": {
                     "type": "string"
                 },
-                "health": {
-                    "type": "number"
-                },
-                "attack": {
-                    "type": "number"
-                },
                 "spells": {
                     "type": "array",
                     "items": {
@@ -23,7 +17,7 @@
                     "minItems": 1
                 }
             },
-            "required": [ "name", "health", "attack", "spells" ],
+            "required": [ "name", "spells" ],
             "additionalProperties": false
         }
     },
