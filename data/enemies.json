@@ -3,66 +3,82 @@
     "enemies": [
         {
             "name": "Invading Riftkeeper",
+            "melee": true,
             "spells": [169]
         },
         {
             "name": "Charthox",
+            "melee": true,
             "spells": [187]
         },
         {
             "name": "Callous Monstrosity",
+            "melee": true,
             "spells": [200]
         },
         {
             "name": "Seed Stealer",
+            "melee": true,
             "spells": [259]
         },
         {
             "name": "Seed Harvester",
+            "melee": true,
             "spells": [260]
         },
         {
             "name": "Ash Crawler",
+            "melee": true,
             "spells": [290]
         },
         {
             "name": "Greater Ash Crawler",
+            "melee": true,
             "spells": [291]
         },
         {
             "name": "Forsworn Protector",
+            "melee": true,
             "spells": [145]
         },
         {
             "name": "Forsworn Javelineer",
+            "melee": true,
             "spells": [146]
         },
         {
             "name": "Befouler Ahnqat",
+            "melee": false,
             "spells": [218]
         },
         {
             "name": "Necrotic Ritualist",
+            "melee": true,
             "spells": [209]
         },
         {
             "name": "Starved Etherwyrm",
+            "melee": true,
             "spells": [138]
         },
         {
             "name": "Rotbriar Scrapper",
+            "melee": true,
             "spells": [117]
         },
         {
             "name": "Rotbriar Tormentor",
+            "melee": false,
             "spells": [118]
         },
         {
             "name": "Rotbriar Trickster",
+            "melee": false,
             "spells": [120]
         },
         {
             "name": "Dark Colossus",
+            "melee": true,
             "spells": [160]
         }
     ]

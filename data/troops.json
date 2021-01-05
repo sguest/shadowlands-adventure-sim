@@ -4,11 +4,13 @@
         {
             "name": "Ardenweald Trapper",
             "covenant": "Night Fae",
+            "melee": true,
             "spells": [53]
         },
         {
             "name": "Kyrian Phalanx",
             "covenant": "Kyrian",
+            "melee": true,
             "spells": [46]
         }
     ]

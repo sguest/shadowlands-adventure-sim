@@ -9,6 +9,9 @@
                 "name": {
                     "type": "string"
                 },
+                "melee": {
+                    "type": "boolean"
+                },
                 "spells": {
                     "type": "array",
                     "items": {
@@ -17,7 +20,7 @@
                     "minItems": 1
                 }
             },
-            "required": [ "name", "spells" ],
+            "required": [ "name", "melee", "spells" ],
             "additionalProperties": false
         }
     },

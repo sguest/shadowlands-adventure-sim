@@ -13,6 +13,9 @@
                     "type": "string",
                     "enum": [ "Kyrian", "Necrolord", "Night Fae", "Venthyr", "Neutral" ]
                 },
+                "melee": {
+                    "type": "boolean"
+                },
                 "spells": {
                     "type": "array",
                     "items": { 
@@ -22,7 +25,7 @@
                 }
             },
             "additionalProperties": false,
-            "required": [ "name", "covenant", "spells" ]
+            "required": [ "name", "covenant", "melee", "spells" ]
         }
     },
     "properties": {

@@ -4,91 +4,109 @@
         {
             "name": "Telethakas",
             "covenant": "Kyrian",
+            "melee": false,
             "spells": [26]
         },
         {
             "name": "Sika",
             "covenant": "Kyrian",
+            "melee": false,
             "spells": [77]
         },
         {
             "name": "Clora",
             "covenant": "Kyrian",
+            "melee": true,
             "spells": [78]
         },
         {
             "name": "Pelodis",
             "covenant": "Kyrian",
+            "melee": true,
             "spells": [76]
         },
         {
             "name": "Pelagos",
             "covenant": "Kyrian",
+            "melee": false,
             "spells": [87, 88]
         },
         {
             "name": "Kythekios",
             "covenant": "Kyrian",
+            "melee": true,
             "spells": [25]
         },
         {
             "name": "Kleia",
             "covenant": "Kyrian",
+            "melee": true,
             "spells": [83, 82]
         },
         {
             "name": "Teliah",
             "covenant": "Kyrian",
+            "melee": false,
             "spells": [24]
         },
         {
             "name": "Dreamweaver",
             "covenant": "Night Fae",
+            "melee": false,
             "spells": [103, 104]
         },
         {
             "name": "Te'zan",
             "covenant": "Night Fae",
+            "melee": true,
             "spells": [99]
         },
         {
             "name": "Chalkyth",
             "covenant": "Night Fae",
+            "melee": true,
             "spells": [94]
         },
         {
             "name": "Yira'lya",
             "covenant": "Night Fae",
+            "melee": false,
             "spells": [96]
         },
         {
             "name": "Guardian Kota",
             "covenant": "Night Fae",
+            "melee": true,
             "spells": [97]
         },
         {
             "name": "Niya",
             "covenant": "Night Fae",
+            "melee": false,
             "spells": [89, 90]
         },
         {
             "name": "Blisswing",
             "covenant": "Night Fae",
+            "melee": true,
             "spells": [91]
         },
         {
             "name": "Master Sha'lor",
             "covenant": "Night Fae",
+            "melee": false,
             "spells": [98]
         },
         {
             "name": "Croman",
             "covenant": "Neutral",
+            "melee": true,
             "spells": [245]
         },
         {
             "name": "Meatball",
             "covenant": "Neutral",
+            "melee": true,
             "spells": [244]
         }
     ]
