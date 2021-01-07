@@ -2,6 +2,13 @@
 import * as readline from 'readline';
 import { parseFollowers, parseEnemies, combatantData } from './util/parser';
 
+interface enhancedTargetInfo {
+    name: string
+    points: number
+    oldHealth: number
+    newHealth: number
+}
+
 let rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -47,7 +54,7 @@ function handleEnd() {
         for(let event of log.events) {
             let caster = combatants[event.casterBoardIndex];
             let casterName = displayName(caster);
-            let targets = [];
+            let targets: enhancedTargetInfo[] = [];
             if(Array.isArray(event.targetInfo)) {
                 targets = event.targetInfo.map(t => ({name: displayName(combatants[t.boardIndex]), points: t.points, oldHealth: t.oldHealth, newHealth: t.newHealth}));
                 for(let target of event.targetInfo) {

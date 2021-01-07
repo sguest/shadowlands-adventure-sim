@@ -3,13 +3,13 @@ import * as path from 'path';
 import * as luainjs from 'lua-in-js';
 import { LuaType } from 'lua-in-js/src/utils';
 
-function cleanObject(obj: LuaType) {
+function cleanObject(obj: LuaType): any {
     if(typeof obj === 'object') {
         if(obj.numValues.length > 1) {
             return obj.numValues.slice(1).map(cleanObject);
         }
         else {
-            let returnValue = {};
+            let returnValue: {[key: string]: any} = {};
             for(let key in obj.strValues) {
                 returnValue[key] = cleanObject(obj.strValues[key]);
             }

@@ -20,11 +20,11 @@ export interface enemyData extends combatantData {
 }
 
 export function parseFollowers(mission: missionData): {[key: number]: followerData} {
-    let followers = {};
+    let followers: {[key: number]: followerData} = {};
 
     for(let followerId in mission.followers) {
         let data = mission.followers[followerId];
-        let spells = {};
+        let spells: {[key: number]: spellData} = {};
         
         for(let spellData of data.spells) {
             let spell: spellData = {
@@ -50,10 +50,10 @@ export function parseFollowers(mission: missionData): {[key: number]: followerDa
 }
 
 export function parseEnemies(mission: missionData): {[key: number]: enemyData} {
-    let enemies = {};
+    let enemies: {[key: number]: enemyData} = {};
 
     for(let encounter of mission.encounters) {
-        let spells = {};
+        let spells: {[key: number]: spellData} = {};
 
         for(let spellData of encounter.autoCombatSpells) {
             let spell: spellData = {

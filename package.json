@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "import": "ts-node import.ts",
-    "summary": "ts-node summary.ts"
+    "import": "ts-node-script import.ts",
+    "summary": "ts-node-script summary.ts",
+    "validate": "ts-node-script validate.ts"
   },
   "dependencies": {
     "lua-in-js": "^2.2.0",

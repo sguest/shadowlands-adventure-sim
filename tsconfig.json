@@ -3,6 +3,8 @@
     "module": "commonjs",
     "compilerOptions": {
         "typeRoots": ["./node_modules/@types"],
-        "sourceMap": true
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "resolveJsonModule": true
     }
 }
