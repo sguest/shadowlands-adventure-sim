@@ -1,5 +1,27 @@
 {
     "$schema": "./spells.schema.json",
+    "11": {
+        "name": "Melee Attack",
+        "cooldown": 0,
+        "targets": "closest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1
+            }
+        ]
+    },
+    "15": {
+        "name": "Ranged Attack",
+        "cooldown": 0,
+        "targets": "farthest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1
+            }
+        ]
+    },
     "24": {
         "name": "Shining Spear",
         "cooldown": 2,
@@ -292,7 +314,7 @@
     "104": {
         "name": "Podtender",
         "cooldown": 1,
-        "targets": "adjacent-ally",
+        "targets": "closest-ally",
         "effects": [
             {
                 "type": "heal",

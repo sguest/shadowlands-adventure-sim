@@ -1,8 +1,9 @@
-const fs = require('fs/promises');
-const path = require('path');
-const luainjs = require('lua-in-js');
+import * as fs from 'fs/promises';
+import * as path from 'path';
+import * as luainjs from 'lua-in-js';
+import { LuaType } from 'lua-in-js/src/utils';
 
-function cleanObject(obj) {
+function cleanObject(obj: LuaType) {
     if(typeof obj === 'object') {
         if(obj.numValues.length > 1) {
             return obj.numValues.slice(1).map(cleanObject);
@@ -21,7 +22,7 @@ function cleanObject(obj) {
 }
 
 (async function() {
-    let wowPath = undefined;
+    let wowPath: string = undefined;
     try {
         wowPath = await fs.readFile(path.resolve(__dirname, 'wowfolder.txt'), 'utf-8');
     }
@@ -52,6 +53,10 @@ function cleanObject(obj) {
                     const luaScript = luaEnv.parse(contents + '\nreturn AL_Logs');
                     let result = cleanObject(luaScript.exec());
 
+                    if(!result) {
+                        console.log('No files to import');
+                        process.exit(0);
+                    }
                     let errors = false;
 
                     for(let mission of result) {

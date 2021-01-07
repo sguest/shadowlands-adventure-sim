@@ -1,4 +1,6 @@
-const readline = require('readline');
+/// <reference path="./@types/imported.d.ts" />
+import * as readline from 'readline';
+import { parseFollowers, parseEnemies, combatantData } from './util/parser';
 
 let rl = readline.createInterface({
     input: process.stdin,
@@ -8,15 +10,15 @@ let rl = readline.createInterface({
 
 let data = '';
 
-function handleData(line) {
+function handleData(line: string) {
     data += line + '\n';
 }
 
-function displayName(combatant) {
+function displayName(combatant: combatantData) {
     return `${combatant.name} (${combatant.boardIndex})`;
 }
 
-function printSummary(combatants) {
+function printSummary(combatants: {[key: number]: combatantData}) {
     for(let boardIndex in combatants) {
         let combatant = combatants[boardIndex];
         if(combatant.currentHealth <= 0) {
@@ -29,56 +31,10 @@ function printSummary(combatants) {
 }
 
 function handleEnd() {
-    let mission = JSON.parse(data);
+    let mission = JSON.parse(data) as missionData;
 
-    let followers = {};
-
-    for(let followerId in mission.followers) {
-        let data = mission.followers[followerId];
-        let spells = {};
-        
-        for(let spellData of data.spells) {
-            let spell = {
-                id: spellData.autoCombatSpellID,
-                name: spellData.name,
-            };
-            spells[spell.id] = spell;
-        }
-
-        let follower = {
-            name: data.missionInfo.name,
-            boardIndex: data.missionInfo.boardIndex,
-            level: data.missionInfo.level,
-            maxHealth: data.stats.maxHealth,
-            currentHealth: data.stats.currentHealth,
-            attack: data.stats.attack,
-            spells,
-        };
-        followers[follower.boardIndex] = follower;
-    }
-    let enemies = {};
-
-    for(let encounter of mission.encounters) {
-        let spells = {};
-
-        for(let spellData of encounter.autoCombatSpells) {
-            let spell = {
-                id: spellData.autoCombatSpellID,
-                name: spellData.name,
-            };
-            spells[spell.id] = spell;
-        }
-
-        let enemy = {
-            name: encounter.name,
-            boardIndex: encounter.boardIndex,
-            maxHealth: encounter.maxHealth,
-            currentHealth: encounter.health,
-            attack: encounter.attack,
-            spells,
-        };
-        enemies[enemy.boardIndex] = enemy;
-    }
+    let followers = parseFollowers(mission);
+    let enemies = parseEnemies(mission);
 
     let combatants = {...followers, ...enemies};
 
@@ -101,7 +57,7 @@ function handleEnd() {
             }
             let spell = caster.spells[event.spellID];
 
-            let auraType;
+            let auraType: string;
             if(event.auraType === 0) {
                 auraType = 'not an aura';
             }
@@ -130,7 +86,7 @@ function handleEnd() {
                     break;
                 case 2:
                 case 3:
-                    let attackType;
+                    let attackType: string;
                     if(event.type === 2) {
                         attackType = 'melee';
                     }

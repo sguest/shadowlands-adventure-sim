@@ -1,0 +1,8 @@
+{
+    "types": ["node"],
+    "module": "commonjs",
+    "compilerOptions": {
+        "typeRoots": ["./node_modules/@types"],
+        "sourceMap": true
+    }
+}
