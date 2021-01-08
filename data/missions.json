@@ -42,6 +42,35 @@
             }
         ]
     },
+    "2196": {
+        "name": "Campaign: Rescue the Runelight Leaper",
+        "enemies": [
+            {
+                "name": "Verdant Prowler",
+                "position": 6
+            },
+            {
+                "name": "Verdant Prowler",
+                "position": 7
+            },
+            {
+                "name": "Verdant Prowler",
+                "position": 5
+            },
+            {
+                "name": "Verdant Prowler",
+                "position": 8
+            },
+            {
+                "name": "Ravenous Beta",
+                "position": 11
+            },
+            {
+                "name": "Ravenous Alpha",
+                "position": 10
+            }
+        ]
+    },
     "2199": {
         "name": "Languishing Lament",
         "enemies": [
@@ -94,6 +123,35 @@
             }
         ]
     },
+    "2223": {
+        "name": "Slime-Drenched Crystals",
+        "enemies": [
+            {
+                "name": "Green Slime",
+                "position": 6
+            },
+            {
+                "name": "Green Slime",
+                "position": 7
+            },
+            {
+                "name": "Green Slime",
+                "position": 5
+            },
+            {
+                "name": "Green Slime",
+                "position": 8
+            },
+            {
+                "name": "Green Slime",
+                "position": 11
+            },
+            {
+                "name": "Green Slime",
+                "position": 10
+            }
+        ]
+    },
     "2230": {
         "name": "Campaign: Ahnqat's Darkness",
         "enemies": [
@@ -115,6 +173,40 @@
             }
         ]
     },
+    "2235": {
+        "name": "Rifts, Unkept",
+        "enemies": [
+            {
+                "name": "Invading Riftkeeper",
+                "position": 6
+            },
+            {
+                "name": "Invading Riftkeeper",
+                "position": 7
+            }
+        ]
+    },
+    "2237": {
+        "name": "Unreasonable Tithes",
+        "enemies": [
+            {
+                "name": "Cruel Collector",
+                "position": 6
+            },
+            {
+                "name": "Cruel Collector",
+                "position": 7
+            },
+            {
+                "name": "Voracious Collector",
+                "position": 9
+            },
+            {
+                "name": "Voracious Collector",
+                "position": 12
+            }
+        ]
+    },
     "2247": {
         "name": "Campaign: Charthox the Indomitable",
         "enemies": [
@@ -128,6 +220,27 @@
             },
             {
                 "name": "Charthox",
+                "position": 7
+            }
+        ]
+    },
+    "2276": {
+        "name": "Blighted Times",
+        "enemies": [
+            {
+                "name": "Blighted Conqueror",
+                "position": 8
+            },
+            {
+                "name": "Blighted Conqueror",
+                "position": 6
+            },
+            {
+                "name": "Blighted Overseer",
+                "position": 5
+            },
+            {
+                "name": "Blighted Overseer",
                 "position": 7
             }
         ]
@@ -154,6 +267,15 @@
             {
                 "name": "Greater Ash Crawler",
                 "position": 11
+            }
+        ]
+    },
+    "2289": {
+        "name": "Echo of Aella",
+        "enemies": [
+            {
+                "name": "Echo of Aella",
+                "position": 10
             }
         ]
     },

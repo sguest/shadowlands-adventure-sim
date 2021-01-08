@@ -2,16 +2,28 @@
     "$schema": "./troops.schema.json",
     "troops": [
         {
+            "name": "Kyrian Phalanx",
+            "covenant": "Kyrian",
+            "melee": true,
+            "spells": [46]
+        },
+        {
+            "name": "Kyrian Halberdier",
+            "covenant": "Kyrian",
+            "melee": true,
+            "spells": [50]
+        },
+        {
             "name": "Ardenweald Trapper",
             "covenant": "Night Fae",
             "melee": true,
             "spells": [53]
         },
         {
-            "name": "Kyrian Phalanx",
-            "covenant": "Kyrian",
-            "melee": true,
-            "spells": [46]
+            "name": "Ardenweald Grovetender",
+            "covenant": "Night Fae",
+            "melee": false,
+            "spells": [71]
         }
     ]
 }

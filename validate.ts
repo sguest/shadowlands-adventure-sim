@@ -8,6 +8,7 @@ import * as spellData from './data/spells.json';
 import * as troopData from './data/troops.json';
 import * as companionData from './data/companions.json';
 import * as enemyData from './data/enemies.json';
+import * as missionData from './data/missions.json';
 
 interface combatantInfo {
     name: string
@@ -93,11 +94,28 @@ interface effectAura {
 
 type aura = dotAura | effectAura;
 
-validateFile(path.resolve(__dirname, 'parsedFiles/1609725731666 - Misguided Monstrosity.json'))
+async function processFiles() {
+    let directory: string = '';
+    try {
+        directory = path.resolve(__dirname, 'parsedFiles');
+        let files = await fs.readdir(directory);
+    
+        for(let file of files) {
+            await validateFile(path.resolve(directory, file));
+        }
+    }
+    catch(e) {
+        console.log(`Failed to read parsed files directory at ${directory}`);
+        console.log(e);
+    }
+}
+
+processFiles();
 
 let combatants: {[key: number]: combatant};
-let auras: aura[] = [];
-let log = '';
+let auras: aura[];
+let log: string;
+let missingSpells: number[] = [];
 
 let enemyProximityList: {[key: number]: number[]} = {
     0: [5, 6, 10, 7, 11, 8, 12, 9],
@@ -154,16 +172,41 @@ let meleePositions = [2, 3, 4, 5, 6, 7, 8];
 
 function mapSpell(spellId: number): combatSpell {
     let spellInfo = (spellData as any)[spellId];
+    if(!spellInfo) {
+        missingSpells.push(spellId);
+        return {
+            cooldown: 0,
+            targets: '',
+            effects: [],
+            cooldownRemaining: 0,
+        }
+    }
     return {
         cooldown: spellInfo.cooldown,
         targets: spellInfo.targets,
         effects: spellInfo.effects.slice(0),
-        cooldownRemaining: spellInfo.delay || 0
+        cooldownRemaining: spellInfo.delay || 0,
     };
 }
 
 let meleeAttack = mapSpell(11);
 let rangedAttack = mapSpell(15);
+
+function loadMissingCombatant(missionData: missionData, combatantData: combatantData) {
+    let boardIndex = combatantData.boardIndex;
+    let melee: boolean;
+
+    for(let entry of missionData.result.combatLog[0].events) {
+        if(entry.casterBoardIndex === boardIndex && (entry.spellID === 11 || entry.spellID === 15)) {
+            melee = (entry.spellID === 11);
+        }
+    }
+    return {
+        name: combatantData.name,
+        melee,
+        spells: Object.keys(combatantData.spells).map(parseInt),
+    }
+}
 
 function loadExtraData(baseData: combatantData, entries: combatantInfo[]): combatant {
     for(let entry of entries) {
@@ -299,8 +342,8 @@ const targetFunctions: {[key: string]: (caster:combatant) => combatant[]} = {
 
 function getTargets(caster: combatant, targetType: string) {
     if(!targetFunctions[targetType]) {
-        console.log('Unrecognized target type ' + targetType);
-        process.exit(1);
+        log += `Unrecognized target type ${targetType}\n`;
+        return [];
     }
     return targetFunctions[targetType](caster) || [];
 }
@@ -433,22 +476,45 @@ function sortTurnOrder(combatants: combatant[]) {
 }
 
 async function validateFile(fileName: string) {
+    auras = [];
+    log = '';
+    missingSpells = [];
     let mission = JSON.parse(await fs.readFile(fileName, 'utf-8')) as missionData;
 
     let trackedFollowers = parseFollowers(mission);
     let followers: {[key: number]: combatant} = {};
 
+    let missingFollowers: any[] = [];
     for(let i in trackedFollowers) {
         let fullFollower = loadExtraData(trackedFollowers[i], companionData.companions);
         if(!fullFollower) {
             fullFollower = loadExtraData(trackedFollowers[i], troopData.troops);
         }
-        followers[i] = fullFollower;
+        if(!fullFollower) {
+            missingFollowers.push(loadMissingCombatant(mission, trackedFollowers[i]))
+        }
+        else {
+            followers[i] = fullFollower;
+        }
     }
     let trackedEnemies = parseEnemies(mission);
     let enemies: {[key: number]: combatant} = {};
+    let missingEnemies = [];
     for(let i in trackedEnemies) {
         enemies[i] = loadExtraData(trackedEnemies[i], enemyData.enemies);
+        if(!enemies[i]) {
+            missingEnemies.push(loadMissingCombatant(mission, trackedEnemies[i]));
+        }
+    }
+
+    let missingMission = false;
+    if(!(missionData as any)[mission.missionID]) {
+        missingMission = true;
+    }
+
+    if(missingMission || missingEnemies.length || missingFollowers.length || missingSpells.length) {
+        await writeMissingData(fileName, missingMission, mission, missingEnemies, missingFollowers, missingSpells);
+        return;
     }
 
     combatants = {...followers, ...enemies};
@@ -519,12 +585,56 @@ async function validateFile(fileName: string) {
             let tracked = trackedCombatants[id];
             let simulated = combatants[id];
             if(tracked.currentHealth !== simulated.currentHealth || tracked.maxHealth !== simulated.maxHealth) {
-                console.log(log);
-                console.log(`Desync after round ${round}. Combatant ID ${id} health should be ${tracked.currentHealth}/${tracked.maxHealth} but is ${simulated.currentHealth}/${simulated.maxHealth}`);
-                process.exit(1);
+                log += `Desync after round ${round}. Combatant ID ${id} health should be ${tracked.currentHealth}/${tracked.maxHealth} but is ${simulated.currentHealth}/${simulated.maxHealth}`;
+                await writeFailureData(fileName, log);
+                return;
             }
         }
     }
 
-    console.log(`Done, valid after ${round} rounds`);
+    await writeSuccessData(fileName);
+}
+
+async function writeSuccessData(fileName: string) {
+    let successFolder = path.resolve(fileName, '../../successFiles');
+    await fs.mkdir(successFolder, {recursive: true});
+    let basename = path.basename(fileName);
+    await fs.rename(fileName, path.resolve(successFolder, basename));
+}
+
+async function writeFailureData(fileName: string, log: string) {
+    let failureFolder = path.resolve(fileName, '../../failedFiles');
+    await fs.mkdir(failureFolder, {recursive: true});
+    let basename = path.basename(fileName);
+    await fs.writeFile(path.resolve(failureFolder, basename.replace(/\.json$/, '') + '.log.txt'), log);
+    await fs.rename(fileName, path.resolve(failureFolder, basename));
+}
+
+async function writeMissingData(fileName: string, missingMission: boolean, mission: missionData, missingEnemies: any[], missingFollowers: any[], missingSpells: number[]) {
+    let missingFolder = path.resolve(fileName, '../../missingFiles');
+    await fs.mkdir(missingFolder, {recursive: true});
+    let basename = path.basename(fileName);
+    let rootname = basename.replace(/\.json$/, '');
+    if(missingMission) {
+        let missionData: {[key: number]: any} = {};
+        missionData[mission.missionID] = {
+            name: mission.missionInfo.name,
+            enemies: mission.encounters.map(e => ({name: e.name, position: e.boardIndex})),
+        }
+        await fs.writeFile(path.resolve(missingFolder, rootname + '.missions.json'), JSON.stringify(missionData, null, 4));
+    }
+    if(missingEnemies.length) {
+        await fs.writeFile(path.resolve(missingFolder, rootname + '.enemies.json'), JSON.stringify({enemies: missingEnemies}, null, 4));
+    }
+    if(missingFollowers.length) {
+        await fs.writeFile(path.resolve(missingFolder, rootname + '.followers.json'), JSON.stringify({followers: missingFollowers}, null, 4));
+    }
+    if(missingSpells.length) {
+        let spellObj: {[key: number]: any} = {};
+        for(let spell of missingSpells) {
+            spellObj[spell] = {};
+        }
+        await fs.writeFile(path.resolve(missingFolder, rootname + '.spells.json'), JSON.stringify(spellObj, null, 4));
+    }
+    await fs.rename(fileName, path.resolve(missingFolder, basename));
 }

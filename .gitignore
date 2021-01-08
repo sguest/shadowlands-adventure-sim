@@ -1,4 +1,7 @@
 node_modules/
 parsedFiles/
+missingFiles/
+failedFiles/
+successFiles/
 
 wowfolder.txt

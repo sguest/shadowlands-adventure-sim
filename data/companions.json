@@ -50,6 +50,12 @@
             "spells": [24]
         },
         {
+            "name": "Molako",
+            "covenant": "Kyrian",
+            "melee": false,
+            "spells": [73]
+        },
+        {
             "name": "Dreamweaver",
             "covenant": "Night Fae",
             "melee": false,

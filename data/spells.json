@@ -364,7 +364,7 @@
     "138": {
         "name": "Tail lash",
         "cooldown": 2,
-        "targets": "all-adjacent-melee-enemies",
+        "targets": "all-adjacent-enemies",
         "effects": [
             {
                 "type": "damage",

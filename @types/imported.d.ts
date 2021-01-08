@@ -57,8 +57,13 @@ interface spellInfo {
     name: string
 }
 
+interface missionInfo {
+    name: string
+}
+
 interface missionData {
-    missionId: number
+    missionID: number
+    missionInfo: missionInfo
     result: missionResult
     followers: {[key: string]: followerData}
     encounters: encounterData[]

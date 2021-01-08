@@ -80,6 +80,51 @@
             "name": "Dark Colossus",
             "melee": true,
             "spells": [160]
+        },
+        {
+            "name": "Blighted Overseer",
+            "melee": true,
+            "spells": [256]
+        },
+        {
+            "name": "Blighted Conqueror",
+            "melee": true,
+            "spells": [255]
+        },
+        {
+            "name": "Verdant Prowler",
+            "melee": true,
+            "spells": [9]
+        },
+        {
+            "name": "Ravenous Alpha",
+            "melee": true,
+            "spells": [19]
+        },
+        {
+            "name": "Ravenous Beta",
+            "melee": true,
+            "spells": [136]
+        },
+        {
+            "name": "Green Slime",
+            "melee": true,
+            "spells": [211]
+        },
+        {
+            "name": "Echo of Aella",
+            "melee": true,
+            "spells": [282]
+        },
+        {
+            "name": "Cruel Collector",
+            "melee": true,
+            "spells": [172]
+        },
+        {
+            "name": "Voracious Collector",
+            "melee": true,
+            "spells": [173]
         }
     ]
 }
