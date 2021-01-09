@@ -126,7 +126,7 @@ let enemyProximityList: {[key: number]: number[]} = {
     0: [5, 6, 10, 7, 11, 8, 12, 9],
     1: [6, 7, 11, 8, 12, 5, 9, 10],
     2: [5, 9, 6, 10, 7, 11, 8, 12],
-    3: [6, 10, 7, 11, 5, 12, 8, 9],
+    3: [6, 10, 7, 5, 11, 12, 8, 9],
     4: [7, 8, 11, 12, 6, 10, 5, 9],
     5: [2, 3, 0, 1, 4],
     6: [2, 3, 0, 1, 4],
@@ -352,6 +352,13 @@ const targetFunctions: {[key: string]: (caster: combatant, spellId?: number, eff
     },
     'farthest-enemy': (caster) => {
         return firstValidTargetId(enemyRangedProximityList[caster.boardIndex]);
+    },
+    'random-enemy': (caster: combatant, spellId: number, effectIndex: number) => {
+        for(let event of mission.result.combatLog[round].events) {
+            if(event.casterBoardIndex === caster.boardIndex && event.spellID === spellId && event.effectIndex === effectIndex) {
+                return [combatants[event.targetInfo[0].boardIndex]];
+            }
+        }
     },
     'all-enemies': (caster) => {
         let possible = [];
