@@ -151,6 +151,9 @@
                 },
                 "delay": {
                     "type": "number"
+                },
+                "comment": {
+                    "type": "string"
                 }
             },
             "required": [ "name", "cooldown", "targets", "effects" ],
