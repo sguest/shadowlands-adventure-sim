@@ -186,6 +186,22 @@ let enemyAdjacencyList: {[key: number]: number[][]} = {
     12: [[4], [3], [2], [1], [0]],
 }
 
+let allyAdjacencyList: {[key: number]: number[][]} = {
+    0: [[2, 3, 1], [4]],
+    1: [[0, 3, 4], [2]],
+    2: [[0, 3], [1, 4]],
+    3: [[0, 1, 2, 4]],
+    4: [[1, 3], [0, 2]],
+    5: [[6, 9, 10], [7, 11], [8, 12]],
+    6: [[5, 7, 9, 10, 11], [8, 12]],
+    7: [[6, 8, 10, 11, 12], [5, 9]],
+    8: [[7, 11, 12], [6, 10], [5, 9]],
+    9: [[5, 6, 10], [7, 11], [8, 12]],
+    10: [[5, 6, 7, 9, 11], [8, 12]],
+    11: [[6, 7, 8, 10, 12], [5, 9]],
+    12: [[7, 8, 11], [6, 10], [5, 9]],
+}
+
 let companionPositions = [0, 1, 2, 3, 4];
 let encounterPositions = [5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -401,6 +417,15 @@ const targetFunctions: {[key: string]: (caster: combatant, spellId?: number, eff
     },
     'all-other-allies': (caster) => {
         return targetFunctions['all-allies'](caster).filter(a => a !== caster);
+    },
+    'all-adjacent-allies': (caster) => {
+        let list = allyAdjacencyList[caster.boardIndex];
+        for(let subList of list) {
+            let results = subList.filter(isValidTargetId).map(e => combatants[e]);
+            if(results.length) {
+                return results;
+            }
+        }
     },
     'all-ranged-allies': (caster) => {
         let allAllies = targetFunctions['all-allies'](caster);
@@ -628,6 +653,7 @@ async function validateFile(fileName: string) {
     for(let follower of followerOrder) {
         for(let spell of follower.spells) {
             if(spell.cooldown === 0) {
+                log += `${follower.name} (${follower.boardIndex}) using pre-buff spell ${spell.name}\n`;
                 useSpell(follower, spell);
             }
         }
@@ -636,6 +662,7 @@ async function validateFile(fileName: string) {
     for(let enemy of enemyOrder) {
         for(let spell of enemy.spells) {
             if(spell.cooldown === 0) {
+                log += `${enemy.name} (${enemy.boardIndex}) using pre-buff spell ${spell.name}\n`;
                 useSpell(enemy, spell);
             }
         }
