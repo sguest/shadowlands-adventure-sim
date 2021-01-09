@@ -54,6 +54,8 @@ interface dotSpellEffect {
 type spellEffect = damageSpellEffect | healSpellEffect | auraSpellEffect | dotSpellEffect;
 
 interface combatSpell {
+    id: number,
+    name: string,
     cooldown: number
     cooldownRemaining: number
     targets: string
@@ -117,6 +119,8 @@ let combatants: {[key: number]: combatant};
 let auras: aura[];
 let log: string;
 let missingSpells: number[] = [];
+let round: number;
+let mission: missionData;
 
 let enemyProximityList: {[key: number]: number[]} = {
     0: [5, 6, 10, 7, 11, 8, 12, 9],
@@ -135,8 +139,8 @@ let enemyProximityList: {[key: number]: number[]} = {
 }
 
 let enemyRangedProximityList: {[key: number]: number[]} = {
-    0: [9, 12, 8, 11, 7, 10, 6, 5],
-    1: [10, 9, 5, 12, 8, 11, 6, 7],
+    0: [12, 9, 8, 11, 7, 10, 6, 5],
+    1: [9, 10, 5, 12, 8, 11, 6, 7],
     2: [12, 8, 11, 7, 10, 6, 9, 5],
     3: [9, 8, 12, 5, 11, 7, 10, 6],
     4: [9, 5, 10, 6, 12, 11, 8, 7],
@@ -170,7 +174,7 @@ let enemyAdjacencyList: {[key: number]: number[][]} = {
     0: [[5, 6, 7], [9, 10, 11], [8], [12]],
     1: [[6, 7, 8], [10, 11, 12], [5], [9]],
     2: [[5, 6], [9, 10], [7], [11], [8], [12]],
-    3: [[6, 7], [10, 11], [5], [9], [8], [12]],
+    3: [[6, 7], [9, 10, 11], [5], [8], [12]],
     4: [[7, 8], [11, 12], [6], [10], [5], [9]],
     5: [[2], [3], [4], [0], [1]],
     6: [[2, 3], [4], [0], [1]],
@@ -203,6 +207,8 @@ function mapSpell(spellId: number): combatSpell {
     if(!spellInfo) {
         missingSpells.push(spellId);
         return {
+            id: spellId,
+            name: '',
             cooldown: 0,
             targets: '',
             effects: [],
@@ -210,6 +216,8 @@ function mapSpell(spellId: number): combatSpell {
         }
     }
     return {
+        id: spellId,
+        name: spellInfo.name,
         cooldown: spellInfo.cooldown,
         targets: spellInfo.targets,
         effects: spellInfo.effects.slice(0),
@@ -319,7 +327,7 @@ function firstValidTargetId(ids: number[]) {
     }
 }
 
-const targetFunctions: {[key: string]: (caster:combatant) => combatant[]} = {
+const targetFunctions: {[key: string]: (caster: combatant, spellId?: number, effectIndex?: number) => combatant[]} = {
     'self': (caster) => {
         return [caster];
     },
@@ -347,6 +355,14 @@ const targetFunctions: {[key: string]: (caster:combatant) => combatant[]} = {
         }
         return allEnemies;
     },
+    'all-ranged-enemies': (caster) => {
+        let allEnemies = targetFunctions['all-enemies'](caster);
+        let rangedEnemies = allEnemies.filter(a => meleePositions.indexOf(a.boardIndex) === -1);
+        if(rangedEnemies.length) {
+            return rangedEnemies;
+        }
+        return allEnemies;
+    },
     'all-adjacent-enemies': (caster) => {
         let list = enemyAdjacencyList[caster.boardIndex];
         for(let subList of list) {
@@ -365,6 +381,13 @@ const targetFunctions: {[key: string]: (caster:combatant) => combatant[]} = {
     },
     'closest-ally': (caster) => {
         return firstValidTargetId(allyProximityList[caster.boardIndex]);
+    },
+    'random-ally': (caster: combatant, spellId: number, effectIndex: number) => {
+        for(let event of mission.result.combatLog[round].events) {
+            if(event.casterBoardIndex === caster.boardIndex && event.spellID === spellId && event.effectIndex === effectIndex) {
+                return [combatants[event.targetInfo[0].boardIndex]];
+            }
+        }
     },
     'all-allies': (caster) => {
         let possible = [];
@@ -389,12 +412,12 @@ const targetFunctions: {[key: string]: (caster:combatant) => combatant[]} = {
     }
 };
 
-function getTargets(caster: combatant, targetType: string) {
+function getTargets(caster: combatant, targetType: string, spellId: number, effectIndex: number) {
     if(!targetFunctions[targetType]) {
         log += `Unrecognized target type ${targetType}\n`;
         return [];
     }
-    return targetFunctions[targetType](caster) || [];
+    return targetFunctions[targetType](caster, spellId, effectIndex) || [];
 }
 
 const effectFunctions: {[key: string]: (caster: combatant, target: combatant, effect: spellEffect) => void} = {
@@ -458,17 +481,13 @@ const effectFunctions: {[key: string]: (caster: combatant, target: combatant, ef
     },
 };
 
-function useSpell(caster: combatant, spell: combatSpell) {
-    let spellTargets = getTargets(caster, spell.targets);
+function useSpell(caster: combatant, spell: combatSpell, allowCounter?: boolean) {
+    let spellTargetType = spell.targets;
 
-    for(let effect of spell.effects) {
-        let effectTargets: combatant[];
-        if(effect.targets) {
-            effectTargets = getTargets(caster, effect.targets);
-        }
-        else {
-            effectTargets = spellTargets;
-        }
+    for(let effectIndex = 0; effectIndex < spell.effects.length; effectIndex++) {
+        let effect = spell.effects[effectIndex];
+        let effectTargetType = effect.targets || spellTargetType;
+        let effectTargets = getTargets(caster, effectTargetType, spell.id, effectIndex)
 
         if(!effectTargets.length) {
             log += 'No valid targets found\n';
@@ -476,6 +495,19 @@ function useSpell(caster: combatant, spell: combatSpell) {
 
         for(let target of effectTargets) {
             effectFunctions[effect.type](caster, target, effect);
+
+            if(allowCounter) {
+                let counterDamageAmount = 0;
+                for(let aura of auras.filter(a => a.target === target)) {
+                    if(!aura.isDot) {
+                        counterDamageAmount += Math.trunc((aura as effectAura).counterDamageAmount * target.attack);
+                    }
+                }
+                if(counterDamageAmount > 0) {
+                    log += '\tCounterattack\n';
+                    dealDamage(target, caster, counterDamageAmount);
+                }
+            }
         }
     }
     spell.cooldownRemaining = spell.cooldown;
@@ -515,17 +547,18 @@ function processTurn(combatant: combatant) {
     }
 
     if(combatant.currentHealth > 0) {
-        log +='\tAttacking:\n'
         if(combatant.melee) {
-            useSpell(combatant, meleeAttack);
+            log +='\tMelee attack:\n'
+            useSpell(combatant, meleeAttack, true);
         }
         else {
-            useSpell(combatant, rangedAttack);
+            log +='\tRanged attack:\n'
+            useSpell(combatant, rangedAttack, true);
         }
 
         for(let spell of combatant.spells) {
             if(spell.cooldown !== 0 && spell.cooldownRemaining <= 0) {
-                log += '\tCasting spell:\n'
+                log += `\tCasting spell ${spell.name}:\n`
                 useSpell(combatant, spell);
             }
             else {
@@ -543,7 +576,7 @@ async function validateFile(fileName: string) {
     auras = [];
     log = '';
     missingSpells = [];
-    let mission = JSON.parse(await fs.readFile(fileName, 'utf-8')) as missionData;
+    mission = JSON.parse(await fs.readFile(fileName, 'utf-8')) as missionData;
 
     let trackedFollowers = parseFollowers(mission);
     let followers: {[key: number]: combatant} = {};
@@ -588,7 +621,7 @@ async function validateFile(fileName: string) {
     combatants = {...followers, ...enemies};
     let trackedCombatants = {...trackedFollowers, ...trackedEnemies};
 
-    let round = 0;
+    round = 0;
     let finished = false;
 
     let followerOrder = sortTurnOrder(Object.values(followers));
@@ -609,7 +642,7 @@ async function validateFile(fileName: string) {
     }
 
     while(!finished) {
-        log += (`\n****Round ${round + 1} ****\n`);
+        log += (`****Round ${round + 1} ****\n`);
         let followerOrder = sortTurnOrder(Object.values(followers));
         let enemyOrder = sortTurnOrder(Object.values(enemies));
 
@@ -640,6 +673,13 @@ async function validateFile(fileName: string) {
         if(!alive) {
             finished = true;
         }
+
+        log += '==End of round summary==\n'
+        for(let id in combatants) {
+            let combatant = combatants[id];
+            log += `\t${combatant.name} (${combatant.boardIndex}) has ${combatant.currentHealth}/${combatant.maxHealth} health\n`;
+        }
+        log += '\n';
 
         for(let event of mission.result.combatLog[round].events) {
             for(let target of event.targetInfo) {
