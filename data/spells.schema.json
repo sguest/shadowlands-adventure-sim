@@ -18,6 +18,7 @@
                 "random-enemy",
                 "all-allies",
                 "all-other-allies",
+                "all-other-melee-allies",
                 "all-adjacent-allies",
                 "all-ranged-allies",
                 "closest-ally",
