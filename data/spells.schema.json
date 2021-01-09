@@ -47,11 +47,18 @@
                 "amount": {
                     "type": "number"
                 },
+                "percentAmount": {
+                    "type": "number"
+                },
                 "targets": {
                     "$ref": "#/definitions/targetType"
                 }
             },
-            "required": [ "type", "amount" ],
+            "required": [ "type" ],
+            "oneOf": [
+                { "required": [ "amount" ] },
+                { "required": [ "percentAmount" ] }
+            ],
             "additionalProperties": false
         },
         "auraEffect": {

@@ -24,7 +24,8 @@ interface damageSpellEffect {
 
 interface healSpellEffect {
     type: 'heal'
-    amount: number
+    amount?: number
+    percentAmount?: number
     targets?: string
 }
 
@@ -354,9 +355,18 @@ const effectFunctions: {[key: string]: (caster: combatant, target: combatant, ef
         dealDamage(caster, target, damageAmount);
     },
     heal: (caster, target, effect: healSpellEffect) => {
-        let healAmount = effect.amount * caster.attack;
+        let healAmount = 0;
+        if(effect.amount) {
+            healAmount = effect.amount * caster.attack;
+        }
+        else if(effect.percentAmount) {
+            healAmount = effect.percentAmount * target.maxHealth
+        }
+        else {
+            log += 'ERROR: Invalid healing spell without amount or percent amount specified\n';
+        }
         target.currentHealth = Math.min(target.maxHealth, target.currentHealth + healAmount);
-        log += `\tHealing ${target.name} (${target.boardIndex}) for ${healAmount}`;
+        log += `\tHealing ${target.name} (${target.boardIndex}) for ${healAmount}\n`;
     },
     dot: (caster, target, effect: dotSpellEffect) => {
         let damageAmount = Math.floor(effect.amount * caster.attack);

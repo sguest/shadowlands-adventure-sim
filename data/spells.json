@@ -1,5 +1,16 @@
 {
     "$schema": "./spells.schema.json",
+    "9": {
+        "name": "Healing Howl",
+        "cooldown": 4,
+        "targets": "all-allies",
+        "effects": [
+            {
+                "type": "heal",
+                "percentAmount": 0.05
+            }
+        ]
+    },
     "11": {
         "name": "Melee Attack",
         "cooldown": 0,
@@ -19,6 +30,17 @@
             {
                 "type": "damage",
                 "amount": 1
+            }
+        ]
+    },
+    "19": {
+        "name": "Searing Bite",
+        "cooldown": 4,
+        "targets": "closest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1.5
             }
         ]
     },
@@ -90,6 +112,17 @@
                 "duration": 1,
                 "helpful": true,
                 "targets": "all-ranged-allies"
+            }
+        ]
+    },
+    "50": {
+        "name": "Halberd Strike",
+        "cooldown": 3,
+        "targets": "farthest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1.2
             }
         ]
     },
@@ -361,6 +394,19 @@
             }
         ]
     },
+    "136": {
+        "name": "Searing Jaws",
+        "cooldown": 4,
+        "targets": "closest-enemy",
+        "effects": [
+            {
+                "type": "dot",
+                "duration": 3,
+                "delay": 3,
+                "amount": 1.5
+            }
+        ]
+    },
     "138": {
         "name": "Tail lash",
         "cooldown": 2,
@@ -422,6 +468,38 @@
             }
         ]
     },
+    "172": {
+        "name": "Viscous Slash",
+        "cooldown": 3,
+        "targets": "all-melee-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 0.2
+            },
+            {
+                "type": "aura",
+                "duration": 1,
+                "attackFactor": -0.5
+            }
+        ]
+    },
+    "173": {
+        "name": "Icy Blast",
+        "cooldown": 4,
+        "targets": "farthest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 0.75
+            },
+            {
+                "type": "aura",
+                "duration": 2,
+                "attackFactor": -0.25
+            }
+        ]
+    },
     "187": {
         "name": "Toxic Miasma",
         "cooldown": 5,
@@ -460,6 +538,17 @@
                 "type": "aura",
                 "duration": 1,
                 "attackFactor": 0.5
+            }
+        ]
+    },
+    "211": {
+        "name": "Acidic Ejection",
+        "cooldown": 4,
+        "targets": "closest-enemy-cone",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1.5
             }
         ]
     },
@@ -510,6 +599,29 @@
             }
         ]
     },
+    "255": {
+        "name": "Defense of the Drust",
+        "cooldown": 3,
+        "targets": "closest-ally",
+        "effects": [
+            {
+                "type": "aura",
+                "duration": 1,
+                "damageTakenFactor": -0.5
+            }
+        ]
+    },
+    "256": {
+        "name": "Drust Blast",
+        "cooldown": 2,
+        "targets": "closest-enemy-cone",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 1
+            }
+        ]
+    },
     "259": {
         "name": "Anima Flame",
         "cooldown": 2,
@@ -531,6 +643,18 @@
             {
                 "type": "damage",
                 "amount": 1.5
+            }
+        ]
+    },
+    "282": {
+        "name": "Charged Javelin",
+        "cooldown": 5,
+        "targets": "closest-enemy",
+        "delay": 5,
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 10
             }
         ]
     },
