@@ -270,7 +270,7 @@
     "90": {
         "name": "Invigorating Herbs",
         "cooldown": 0,
-        "targets": "all-other-allies",
+        "targets": "all-adjacent-allies",
         "effects": [
             {
                 "type": "aura",
@@ -399,12 +399,14 @@
         "name": "Mischievous Blast",
         "cooldown": 4,
         "targets": "farthest-enemy",
+        "delay": 3,
         "effects": [
             {
                 "type": "damage",
                 "amount": 2
             }
-        ]
+        ],
+        "comment": "Description doesn't mention this being delayed, but logs show it is"
     },
     "120": {
         "name": "Goading Motivation",
