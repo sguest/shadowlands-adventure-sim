@@ -72,11 +72,12 @@
             {
                 "type": "aura",
                 "duration": 3,
-                "attackFactor": 0.16,
+                "attackFactor": 0.2,
                 "targets": "self",
                 "helpful": true
             }
-        ]
+        ],
+        "comment": "Description says 16% damage bonus, but testing indicates it's actually 20%"
     },
     "26": {
         "name": "Physiker's Potion",
