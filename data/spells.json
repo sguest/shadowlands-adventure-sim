@@ -416,6 +416,7 @@
             {
                 "type": "aura",
                 "duration": 2,
+                "attackFactor": 0.5,
                 "helpful": true
             }
         ]
