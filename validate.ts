@@ -134,6 +134,22 @@ let enemyProximityList: {[key: number]: number[]} = {
     12: [3, 4, 1, 0, 2],
 }
 
+let enemyRangedProximityList: {[key: number]: number[]} = {
+    0: [9, 12, 8, 11, 7, 10, 6, 5],
+    1: [10, 9, 5, 12, 8, 11, 6, 7],
+    2: [12, 8, 11, 7, 10, 6, 9, 5],
+    3: [9, 8, 12, 5, 11, 7, 10, 6],
+    4: [9, 5, 10, 6, 12, 11, 8, 7],
+    5: [4, 1, 0, 3, 2],
+    6: [4, 1, 0, 3, 2],
+    7: [2, 0, 1, 4, 3],
+    8: [2, 0, 1, 3, 4],
+    9: [4, 1, 0, 3, 2],
+    10: [1, 0, 4, 3, 2],
+    11: [0, 1, 4, 3, 2],
+    12: [2, 0, 1, 4, 3],
+}
+
 let allyProximityList: {[key: number]: number[]} = {
     0: [2, 3, 1, 4],
     1: [3, 4, 0, 2],
@@ -311,7 +327,7 @@ const targetFunctions: {[key: string]: (caster:combatant) => combatant[]} = {
         return firstValidTargetId(enemyProximityList[caster.boardIndex]);
     },
     'farthest-enemy': (caster) => {
-        return firstValidTargetId(enemyProximityList[caster.boardIndex].slice(0).reverse());
+        return firstValidTargetId(enemyRangedProximityList[caster.boardIndex]);
     },
     'all-enemies': (caster) => {
         let possible = [];
@@ -362,6 +378,14 @@ const targetFunctions: {[key: string]: (caster:combatant) => combatant[]} = {
     },
     'all-other-allies': (caster) => {
         return targetFunctions['all-allies'](caster).filter(a => a !== caster);
+    },
+    'all-ranged-allies': (caster) => {
+        let allAllies = targetFunctions['all-allies'](caster);
+        let rangedAllies = allAllies.filter(a => meleePositions.indexOf(a.boardIndex) === -1);
+        if(rangedAllies.length) {
+            return rangedAllies;
+        }
+        return allAllies;
     }
 };
 
@@ -389,6 +413,7 @@ const effectFunctions: {[key: string]: (caster: combatant, target: combatant, ef
         else {
             log += 'ERROR: Invalid healing spell without amount or percent amount specified\n';
         }
+        healAmount = Math.max(Math.floor(healAmount), 0);
         target.currentHealth = Math.min(target.maxHealth, target.currentHealth + healAmount);
         log += `\tHealing ${target.name} (${target.boardIndex}) for ${healAmount}\n`;
     },
@@ -425,7 +450,9 @@ const effectFunctions: {[key: string]: (caster: combatant, target: combatant, ef
             healthBonusAmount: effect.healthBonusAmount || 0,
             counterDamageAmount: effect.counterDamageAmount || 0,
         }
-        target.maxHealth += aura.healthBonusAmount;
+        let maxHealthAmount = Math.trunc(caster.attack * aura.healthBonusAmount);
+        target.maxHealth += maxHealthAmount;
+        target.currentHealth += maxHealthAmount;
         log += `\tAdding aura to ${target.name} (${target.boardIndex})\n`;
         auras.push(aura);
     },
@@ -472,6 +499,9 @@ function processTurn(combatant: combatant) {
                 aura.duration--;
             }
             if(aura.duration === 0) {
+                if(!aura.isDot) {
+                    aura.target.maxHealth -= Math.trunc(aura.caster.attack * (aura as effectAura).healthBonusAmount);
+                }
                 auras.splice(auraId, 1);
                 log += '\tAura fades\n'
             }
@@ -579,7 +609,7 @@ async function validateFile(fileName: string) {
     }
 
     while(!finished) {
-        log += (`****Round ${round + 1} ****\n`);
+        log += (`\n****Round ${round + 1} ****\n`);
         let followerOrder = sortTurnOrder(Object.values(followers));
         let enemyOrder = sortTurnOrder(Object.values(enemies));
 
