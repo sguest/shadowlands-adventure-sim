@@ -123,10 +123,10 @@ let enemyProximityList: {[key: number]: number[]} = {
     1: [6, 7, 11, 8, 12, 5, 9, 10],
     2: [5, 9, 6, 10, 7, 11, 8, 12],
     3: [6, 10, 7, 11, 5, 12, 8, 9],
-    4: [7, 11, 8, 12, 6, 10, 5, 9],
+    4: [7, 8, 11, 12, 6, 10, 5, 9],
     5: [2, 3, 0, 1, 4],
-    6: [2, 3, 4, 0, 1],
-    7: [3, 4, 2, 1, 0],
+    6: [2, 3, 0, 1, 4],
+    7: [3, 4, 1, 0, 2],
     8: [4, 3, 1, 0, 2],
     9: [2, 3, 0, 1, 4],
     10: [2, 3, 4, 0, 1],
@@ -257,18 +257,18 @@ function dealDamage(caster: combatant, target: combatant, amount: number) {
     for(let aura of casterAuras) {
         if(!aura.isDot) {
             attackFactor += (aura as effectAura).attackFactor;
-            amount += Math.floor((aura as effectAura).attackBonusAmount * aura.caster.attack);
+            amount += Math.trunc((aura as effectAura).attackBonusAmount * aura.caster.attack);
         }
     }
 
     for(let aura of targetAuras) {
         if(!aura.isDot) {
             damageTakenFactor += (aura as effectAura).damageTakenFactor;
-            damageTakenBonus += Math.floor((aura as effectAura).damageTakenBonusAmount * aura.caster.attack);
+            damageTakenBonus += Math.trunc((aura as effectAura).damageTakenBonusAmount * aura.caster.attack);
         }
     }
 
-    amount = Math.floor(amount * attackFactor * damageTakenFactor) + damageTakenBonus;
+    amount = Math.max(Math.floor(amount * attackFactor * damageTakenFactor) + damageTakenBonus, 0);
 
     if(!target) {
         console.log('Caster: ' + JSON.stringify(caster) + ' amount: ' + amount);
@@ -277,6 +277,7 @@ function dealDamage(caster: combatant, target: combatant, amount: number) {
     target.currentHealth = Math.max(0, target.currentHealth - amount);
 
     if(target.currentHealth === 0) {
+        log += `\t${target.name} (${target.boardIndex}) dies\n`
         let auraId = 0;
         while(auraId < auras.length) {
             let aura = auras[auraId];
@@ -462,7 +463,7 @@ function processTurn(combatant: combatant) {
             if(aura.isDot) {
                 aura.delay--;
                 if(aura.delay === 0) {
-                    log += '\tDot tick: '
+                    log += '\tDot tick:\n'
                     dealDamage(aura.caster, aura.target, aura.amount);
                     aura.delay = aura.period;
                 }
