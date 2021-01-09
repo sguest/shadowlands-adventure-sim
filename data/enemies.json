@@ -125,6 +125,56 @@
             "name": "Voracious Collector",
             "melee": true,
             "spells": [173]
+        },
+        {
+            "name": "Possessed Grovetender",
+            "melee": false,
+            "spells": [126]
+        },
+        {
+            "name": "Possessed Scavenger",
+            "melee": true,
+            "spells": [125]
+        },
+        {
+            "name": "Possessed Lumberjack",
+            "melee": true,
+            "spells": [137]
+        },
+        {
+            "name": "Loyal Footman",
+            "melee": true,
+            "spells": [177]
+        },
+        {
+            "name": "Privileged Contributor",
+            "melee": true,
+            "spells": [174]
+        },
+        {
+            "name": "Conceited Noble",
+            "melee": false,
+            "spells": [176]
+        },
+        {
+            "name": "Depraved Caregiver",
+            "melee": true,
+            "spells": [178]
+        },
+        {
+            "name": "Depraved Matron",
+            "melee": false,
+            "spells": [179]
+        },
+        {
+            "name": "Darkturned Clawguard",
+            "melee": true,
+            "spells": [150]
+        },
+        {
+            "name": "Umbral Phallynx",
+            "melee": true,
+            "spells": [155]
         }
     ]
 }

@@ -145,6 +145,28 @@
             }
         ]
     },
+    "71": {
+        "name": "Revitalizing Vines",
+        "cooldown": 2,
+        "targets": "closest-ally",
+        "effects": [
+            {
+                "type": "heal",
+                "amount": 1
+            }
+        ]
+    },
+    "73": {
+        "name": "Purification Ray",
+        "cooldown": 2,
+        "targets": "closest-enemy-line",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 0.75
+            }
+        ]
+    },
     "76": {
         "name": "Phalynx Flash",
         "cooldown": 3,

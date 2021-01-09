@@ -171,6 +171,17 @@ let encounterPositions = [5, 6, 7, 8, 9, 10, 11, 12];
 
 let meleePositions = [2, 3, 4, 5, 6, 7, 8];
 
+let linePositions: {[key: number]: number[]} = {
+    5: [5, 9],
+    6: [6, 10],
+    7: [7, 11],
+    8: [8, 12],
+    9: [5, 9],
+    10: [6, 10],
+    11: [7, 11],
+    12: [8, 12],
+}
+
 function mapSpell(spellId: number): combatSpell {
     let spellInfo = (spellData as any)[spellId];
     if(!spellInfo) {
@@ -202,6 +213,11 @@ function loadMissingCombatant(missionData: missionData, combatantData: combatant
             melee = (entry.spellID === 11);
         }
     }
+
+    for(let spellId in combatantData.spells) {
+        mapSpell(parseInt(spellId));
+    }
+
     return {
         name: combatantData.name,
         melee,
@@ -254,6 +270,9 @@ function dealDamage(caster: combatant, target: combatant, amount: number) {
 
     amount = Math.floor(amount * attackFactor * damageTakenFactor) + damageTakenBonus;
 
+    if(!target) {
+        console.log('Caster: ' + JSON.stringify(caster) + ' amount: ' + amount);
+    }
     log += `\tDealing ${amount} damage to ${target.name} (${target.boardIndex})\n`;
     target.currentHealth = Math.max(0, target.currentHealth - amount);
 
@@ -322,6 +341,10 @@ const targetFunctions: {[key: string]: (caster:combatant) => combatant[]} = {
     },
     'closest-enemy-cone': (caster) => {
         return targetFunctions['closest-enemy'](caster);    //This needs more work, once data is available
+    },
+    'closest-enemy-line': (caster) => {
+        let closestEnemy = targetFunctions['closest-enemy'](caster)[0];
+        return linePositions[closestEnemy.boardIndex].filter(isValidTargetId).map(e => combatants[e]);
     },
     'closest-ally': (caster) => {
         return firstValidTargetId(allyProximityList[caster.boardIndex]);
@@ -501,7 +524,9 @@ async function validateFile(fileName: string) {
             fullFollower = loadExtraData(trackedFollowers[i], troopData.troops);
         }
         if(!fullFollower) {
-            missingFollowers.push(loadMissingCombatant(mission, trackedFollowers[i]))
+            if(!missingFollowers.some(f => f.name === trackedFollowers[i].name)) {
+                missingFollowers.push(loadMissingCombatant(mission, trackedFollowers[i]));
+            }
         }
         else {
             followers[i] = fullFollower;
@@ -509,11 +534,13 @@ async function validateFile(fileName: string) {
     }
     let trackedEnemies = parseEnemies(mission);
     let enemies: {[key: number]: combatant} = {};
-    let missingEnemies = [];
+    let missingEnemies: any[] = [];
     for(let i in trackedEnemies) {
         enemies[i] = loadExtraData(trackedEnemies[i], enemyData.enemies);
         if(!enemies[i]) {
-            missingEnemies.push(loadMissingCombatant(mission, trackedEnemies[i]));
+            if(!missingEnemies.some(f => f.name === trackedEnemies[i].name)) {
+                missingEnemies.push(loadMissingCombatant(mission, trackedEnemies[i]));
+            }
         }
     }
 
@@ -629,7 +656,7 @@ async function writeMissingData(fileName: string, missingMission: boolean, missi
         let missionData: {[key: number]: any} = {};
         missionData[mission.missionID] = {
             name: mission.missionInfo.name,
-            enemies: mission.encounters.map(e => ({name: e.name, position: e.boardIndex})),
+            enemies: mission.encounters.map(e => ({name: e.name, position: e.boardIndex})).sort((a, b) => a.position - b.position),
         }
         await fs.writeFile(path.resolve(missingFolder, rootname + '.missions.json'), JSON.stringify(missionData, null, 4));
     }

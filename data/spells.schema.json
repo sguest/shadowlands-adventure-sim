@@ -13,6 +13,7 @@
                 "all-ranged-enemies",
                 "closest-enemy",
                 "closest-enemy-cone",
+                "closest-enemy-line",
                 "farthest-enemy",
                 "random-enemy",
                 "all-allies",

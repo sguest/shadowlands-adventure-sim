@@ -71,6 +71,27 @@
             }
         ]
     },
+    "2197": {
+        "name": "Campaign: Cleanse the Possessed",
+        "enemies": [
+            {
+                "name": "Possessed Lumberjack",
+                "position": 5
+            },
+            {
+                "name": "Possessed Grovetender",
+                "position": 6
+            },
+            {
+                "name": "Possessed Scavenger",
+                "position": 7
+            },
+            {
+                "name": "Possessed Lumberjack",
+                "position": 8
+            }
+        ]
+    },
     "2199": {
         "name": "Languishing Lament",
         "enemies": [
@@ -98,6 +119,23 @@
             {
                 "name": "Forsworn Javelineer",
                 "position": 10
+            }
+        ]
+    },
+    "2202": {
+        "name": "Umbral Regiment",
+        "enemies": [
+            {
+                "name": "Darkturned Clawguard",
+                "position": 5
+            },
+            {
+                "name": "Umbral Phallynx",
+                "position": 6
+            },
+            {
+                "name": "Umbral Phallynx",
+                "position": 7
             }
         ]
     },
@@ -204,6 +242,48 @@
             {
                 "name": "Voracious Collector",
                 "position": 12
+            }
+        ]
+    },
+    "2240": {
+        "name": "Solace for Souls",
+        "enemies": [
+            {
+                "name": "Depraved Caregiver",
+                "position": 5
+            },
+            {
+                "name": "Depraved Caregiver",
+                "position": 6
+            },
+            {
+                "name": "Depraved Caregiver",
+                "position": 7
+            },
+            {
+                "name": "Depraved Matron",
+                "position": 11
+            }
+        ]
+    },
+    "2241": {
+        "name": "Skullduggery by Nobility",
+        "enemies": [
+            {
+                "name": "Loyal Footman",
+                "position": 6
+            },
+            {
+                "name": "Loyal Footman",
+                "position": 7
+            },
+            {
+                "name": "Privileged Contributor",
+                "position": 10
+            },
+            {
+                "name": "Conceited Noble",
+                "position": 11
             }
         ]
     },
