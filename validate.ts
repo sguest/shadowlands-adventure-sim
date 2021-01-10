@@ -123,9 +123,9 @@ let round: number;
 let mission: missionData;
 
 let enemyProximityList: {[key: number]: number[]} = {
-    0: [5, 6, 10, 7, 11, 8, 12, 9],
+    0: [5, 6, 10, 7, 11, 8, 9, 12],
     1: [6, 7, 11, 8, 12, 5, 9, 10],
-    2: [5, 9, 6, 10, 7, 11, 8, 12],
+    2: [5, 6, 9, 10, 7, 11, 8, 12],
     3: [6, 7, 5, 10, 11, 12, 8, 9],
     4: [7, 8, 11, 12, 6, 10, 5, 9],
     5: [2, 3, 0, 1, 4],
@@ -135,7 +135,7 @@ let enemyProximityList: {[key: number]: number[]} = {
     9: [2, 3, 0, 1, 4],
     10: [2, 3, 4, 0, 1],
     11: [2, 3, 4, 0, 1],
-    12: [3, 4, 1, 0, 2],
+    12: [3, 4, 0, 1, 2],
 }
 
 let enemyRangedProximityList: {[key: number]: number[]} = {
