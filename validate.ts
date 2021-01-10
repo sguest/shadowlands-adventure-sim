@@ -142,7 +142,7 @@ let enemyRangedProximityList: {[key: number]: number[]} = {
     0: [12, 9, 8, 11, 10, 7, 6, 5],
     1: [9, 10, 5, 12, 8, 11, 6, 7],
     2: [12, 8, 11, 7, 10, 6, 9, 5],
-    3: [9, 8, 12, 5, 11, 7, 10, 6],
+    3: [9, 8, 12, 5, 11, 6, 7, 10],
     4: [9, 5, 10, 6, 12, 11, 8, 7],
     5: [4, 1, 0, 3, 2],
     6: [4, 1, 0, 3, 2],
@@ -560,55 +560,57 @@ function useSpell(caster: combatant, spell: combatSpell) {
 }
 
 function processTurn(combatant: combatant) {
-    log += `Starting turn for ${combatant.name} (${combatant.boardIndex})\n`;
-    let auraId = 0;
-    while(auraId < auras.length) {
-        let aura = auras[auraId];
-        if(aura.caster === combatant) {
-            if(aura.isDot) {
-                aura.delay--;
-                if(aura.delay === 0) {
-                    log += '\tDot tick:\n'
-                    dealDamage(aura.caster, aura.target, aura.amount);
-                    aura.delay = aura.period;
+    if(!checkFinished()) {
+        log += `Starting turn for ${combatant.name} (${combatant.boardIndex})\n`;
+        let auraId = 0;
+        while(auraId < auras.length) {
+            let aura = auras[auraId];
+            if(aura.caster === combatant) {
+                if(aura.isDot) {
+                    aura.delay--;
+                    if(aura.delay === 0) {
+                        log += '\tDot tick:\n'
+                        dealDamage(aura.caster, aura.target, aura.amount);
+                        aura.delay = aura.period;
+                    }
                 }
-            }
-            if(aura.duration > 0) {
-                aura.duration--;
-            }
-            if(aura.duration === 0) {
-                if(!aura.isDot) {
-                    aura.target.maxHealth -= Math.trunc(aura.caster.attack * (aura as effectAura).healthBonusAmount);
+                if(aura.duration > 0) {
+                    aura.duration--;
                 }
-                auras.splice(auraId, 1);
-                log += '\tAura fades\n'
+                if(aura.duration === 0) {
+                    if(!aura.isDot) {
+                        aura.target.maxHealth -= Math.trunc(aura.caster.attack * (aura as effectAura).healthBonusAmount);
+                    }
+                    auras.splice(auraId, 1);
+                    log += '\tAura fades\n'
+                }
+                else {
+                    auraId++;
+                }
             }
             else {
                 auraId++;
             }
         }
-        else {
-            auraId++;
-        }
-    }
 
-    if(combatant.currentHealth > 0) {
-        if(combatant.melee) {
-            log +='\tMelee attack:\n'
-            useSpell(combatant, meleeAttack);
-        }
-        else {
-            log +='\tRanged attack:\n'
-            useSpell(combatant, rangedAttack);
-        }
-
-        for(let spell of combatant.spells) {
-            if(spell.cooldown !== 0 && spell.cooldownRemaining <= 0) {
-                log += `\tCasting spell ${spell.name}:\n`
-                useSpell(combatant, spell);
+        if(combatant.currentHealth > 0) {
+            if(combatant.melee) {
+                log +='\tMelee attack:\n'
+                useSpell(combatant, meleeAttack);
             }
             else {
-                spell.cooldownRemaining--;
+                log +='\tRanged attack:\n'
+                useSpell(combatant, rangedAttack);
+            }
+
+            for(let spell of combatant.spells) {
+                if(spell.cooldown !== 0 && spell.cooldownRemaining <= 0) {
+                    log += `\tCasting spell ${spell.name}:\n`
+                    useSpell(combatant, spell);
+                }
+                else {
+                    spell.cooldownRemaining--;
+                }
             }
         }
     }
@@ -616,6 +618,24 @@ function processTurn(combatant: combatant) {
 
 function sortTurnOrder(combatants: combatant[]) {
     return combatants.sort((a, b) => b.currentHealth - a.currentHealth || a.boardIndex - b.boardIndex);
+}
+
+function checkFinished() {
+    let allyAlive = false;
+    let enemyAlive = false;
+
+    for(let id in combatants) {
+        if(combatants[id].currentHealth > 0) {
+            if(parseInt(id) <= 4) {
+                allyAlive = true;
+            }
+            else {
+                enemyAlive = true;
+            }
+        }
+    }
+
+    return !allyAlive || !enemyAlive;
 }
 
 async function validateFile(fileName: string) {
@@ -702,25 +722,7 @@ async function validateFile(fileName: string) {
             processTurn(enemy);
         }
 
-        let alive = false;
-        for(let follower of followerOrder) {
-            if(follower.currentHealth > 0) {
-                alive = true;
-            }
-        }
-        if(!alive) {
-            finished = true;
-        }
-
-        alive = false;
-        for(let enemy of enemyOrder) {
-            if(enemy.currentHealth > 0) {
-                alive = true;
-            }
-        }
-        if(!alive) {
-            finished = true;
-        }
+        finished = checkFinished();
 
         log += '==End of round summary==\n'
         for(let id in combatants) {
