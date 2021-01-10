@@ -16,6 +16,12 @@
                 "melee": {
                     "type": "boolean"
                 },
+                "healthBase": {
+                    "type": "number"
+                },
+                "attackBase": {
+                    "type": "number"
+                },
                 "spells": {
                     "type": "array",
                     "items": { 
@@ -25,7 +31,7 @@
                 }
             },
             "additionalProperties": false,
-            "required": [ "name", "covenant", "melee", "spells" ]
+            "required": [ "name", "covenant", "melee", "healthBase", "attackBase", "spells" ]
         }
     },
     "properties": {

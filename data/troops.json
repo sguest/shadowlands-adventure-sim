@@ -5,24 +5,32 @@
             "name": "Kyrian Phalanx",
             "covenant": "Kyrian",
             "melee": true,
+            "healthBase": 300,
+            "attackBase": 20,
             "spells": [46]
         },
         {
             "name": "Kyrian Halberdier",
             "covenant": "Kyrian",
             "melee": true,
+            "healthBase": 150,
+            "attackBase": 40,
             "spells": [50]
         },
         {
             "name": "Ardenweald Trapper",
             "covenant": "Night Fae",
             "melee": true,
+            "healthBase": 300,
+            "attackBase": 30,
             "spells": [53]
         },
         {
             "name": "Ardenweald Grovetender",
             "covenant": "Night Fae",
             "melee": false,
+            "healthBase": 200,
+            "attackBase": 50,
             "spells": [71]
         }
     ]

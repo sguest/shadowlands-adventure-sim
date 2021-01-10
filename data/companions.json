@@ -5,114 +5,152 @@
             "name": "Telethakas",
             "covenant": "Kyrian",
             "melee": false,
+            "healthBase": 125,
+            "attackBase": 50,
             "spells": [26]
         },
         {
             "name": "Sika",
             "covenant": "Kyrian",
             "melee": false,
+            "healthBase": 200,
+            "attackBase": 40,
             "spells": [77]
         },
         {
             "name": "Clora",
             "covenant": "Kyrian",
             "melee": true,
+            "healthBase": 400,
+            "attackBase": 30,
             "spells": [78]
         },
         {
             "name": "Pelodis",
             "covenant": "Kyrian",
             "melee": true,
+            "healthBase": 350,
+            "attackBase": 30,
             "spells": [76]
         },
         {
             "name": "Pelagos",
             "covenant": "Kyrian",
             "melee": false,
+            "healthBase": 250,
+            "attackBase": 40,
             "spells": [87, 88]
         },
         {
             "name": "Kythekios",
             "covenant": "Kyrian",
             "melee": true,
+            "healthBase": 350,
+            "attackBase": 20,
             "spells": [25]
         },
         {
             "name": "Kleia",
             "covenant": "Kyrian",
             "melee": true,
+            "healthBase": 400,
+            "attackBase": 40,
             "spells": [83, 82]
         },
         {
             "name": "Teliah",
             "covenant": "Kyrian",
             "melee": false,
+            "healthBase": 250,
+            "attackBase": 40,
             "spells": [24]
         },
         {
             "name": "Molako",
             "covenant": "Kyrian",
             "melee": false,
+            "healthBase": 150,
+            "attackBase": 40,
             "spells": [73]
         },
         {
             "name": "Dreamweaver",
             "covenant": "Night Fae",
             "melee": false,
+            "healthBase": 175,
+            "attackBase": 60,
             "spells": [103, 104]
         },
         {
             "name": "Te'zan",
             "covenant": "Night Fae",
             "melee": true,
+            "healthBase": 250,
+            "attackBase": 50,
             "spells": [99]
         },
         {
             "name": "Chalkyth",
             "covenant": "Night Fae",
             "melee": true,
+            "healthBase": 350,
+            "attackBase": 40,
             "spells": [94]
         },
         {
             "name": "Yira'lya",
             "covenant": "Night Fae",
             "melee": false,
+            "healthBase": 300,
+            "attackBase": 30,
             "spells": [96]
         },
         {
             "name": "Guardian Kota",
             "covenant": "Night Fae",
             "melee": true,
+            "healthBase": 400,
+            "attackBase": 30,
             "spells": [97]
         },
         {
             "name": "Niya",
             "covenant": "Night Fae",
             "melee": false,
+            "healthBase": 200,
+            "attackBase": 40,
             "spells": [89, 90]
         },
         {
             "name": "Blisswing",
             "covenant": "Night Fae",
             "melee": true,
+            "healthBase": 150,
+            "attackBase": 50,
             "spells": [91]
         },
         {
             "name": "Master Sha'lor",
             "covenant": "Night Fae",
             "melee": false,
+            "healthBase": 200,
+            "attackBase": 40,
             "spells": [98]
         },
         {
             "name": "Croman",
             "covenant": "Neutral",
             "melee": true,
+            "healthBase": 250,
+            "attackBase": 50,
             "spells": [245]
         },
         {
             "name": "Meatball",
             "covenant": "Neutral",
             "melee": true,
+            "healthBase": 400,
+            "attackBase": 30,
             "spells": [244]
         }
     ]

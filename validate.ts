@@ -3,7 +3,7 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
 
-import { parseFollowers, parseEnemies, combatantData } from './util/parser';
+import { parseFollowers, parseEnemies, combatantData, followerData } from './util/parser';
 import * as spellData from './data/spells.json';
 import * as troopData from './data/troops.json';
 import * as companionData from './data/companions.json';
@@ -260,7 +260,7 @@ function mapSpell(spellId: number): combatSpell {
 let meleeAttack = mapSpell(11);
 let rangedAttack = mapSpell(15);
 
-function loadMissingCombatant(missionData: missionData, combatantData: combatantData) {
+function loadMissingCombatant(missionData: missionData, combatantData: combatantData): any {
     let boardIndex = combatantData.boardIndex;
     let melee: boolean;
 
@@ -277,8 +277,20 @@ function loadMissingCombatant(missionData: missionData, combatantData: combatant
     return {
         name: combatantData.name,
         melee,
-        spells: Object.keys(combatantData.spells).map(parseInt),
+        spells: Object.keys(combatantData.spells).map(i => parseInt(i)),
     }
+}
+
+function loadMissingFollower(missionData: missionData, followerData: followerData) {
+    let combatant = loadMissingCombatant(missionData, followerData);
+    let effectiveLevel = followerData.level + 10;
+    let hpPerLevel = Math.floor(followerData.maxHealth / effectiveLevel);
+    let hpRemainder = followerData.maxHealth % effectiveLevel;
+    let attackPerLevel = Math.floor(followerData.attack / effectiveLevel);
+    let attackRemainder = followerData.attack % effectiveLevel;
+    combatant.healthBase = hpPerLevel * 10 + hpRemainder;
+    combatant.attackBase = attackPerLevel * 10 + attackRemainder;
+    return combatant
 }
 
 function loadExtraData(baseData: combatantData, entries: combatantInfo[]): combatant {
@@ -679,7 +691,7 @@ async function validateFile(fileName: string) {
         }
         if(!fullFollower) {
             if(!missingFollowers.some(f => f.name === trackedFollowers[i].name)) {
-                missingFollowers.push(loadMissingCombatant(mission, trackedFollowers[i]));
+                missingFollowers.push(loadMissingFollower(mission, trackedFollowers[i]));
             }
         }
         else {
@@ -706,6 +718,32 @@ async function validateFile(fileName: string) {
     if(missingMission || missingEnemies.length || missingFollowers.length || missingSpells.length) {
         await writeMissingData(fileName, missingMission, mission, missingEnemies, missingFollowers, missingSpells);
         return;
+    }
+
+    for(let id in trackedFollowers) {
+        let follower = trackedFollowers[id];
+
+        for(let data of companionData.companions) {
+            if(data.name === follower.name) {
+                let expectedHp = Math.floor(data.healthBase / 10) * follower.level + data.healthBase;
+                let expectedAttack = Math.floor(data.attackBase / 10) * follower.level + data.attackBase;
+                if(expectedHp !== follower.maxHealth || expectedAttack !== follower.attack) {
+                    await writeFailureData(fileName, `Companion ${follower.name} has incorrect stats. Calculated HP ${expectedHp} and attack ${expectedAttack}. Should be HP ${follower.maxHealth} and attack ${follower.attack}`);
+                    return;
+                }
+            }
+        }
+
+        for(let data of troopData.troops) {
+            if(data.name === follower.name) {
+                let expectedHp = Math.floor(data.healthBase / 10) * follower.level + data.healthBase;
+                let expectedAttack = Math.floor(data.attackBase / 10) * follower.level + data.attackBase;
+                if(expectedHp !== follower.maxHealth || expectedAttack !== follower.attack) {
+                    await writeFailureData(fileName, `Troop ${follower.name} has incorrect stats. Calculated HP ${expectedHp} and attack ${expectedAttack}. Should be HP ${follower.maxHealth} and attack ${follower.attack}`);
+                    return;
+                }
+            }
+        }
     }
 
     combatants = {...followers, ...enemies};
