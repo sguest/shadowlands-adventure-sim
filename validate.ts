@@ -624,7 +624,7 @@ function processTurn(combatant: combatant) {
 
             for(let spell of combatant.spells) {
                 // Have to check this each time, it's possible to die mid-turn to counterattacks
-                if(combatant.currentHealth > 0) {
+                if(combatant.currentHealth > 0 && !checkFinished()) {
                     if(spell.cooldown !== 0 && spell.cooldownRemaining <= 0) {
                         log += `\tCasting spell ${spell.name}:\n`
                         useSpell(combatant, spell);
