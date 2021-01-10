@@ -134,13 +134,13 @@ let enemyProximityList: {[key: number]: number[]} = {
     8: [4, 3, 1, 0, 2],
     9: [2, 3, 0, 1, 4],
     10: [2, 3, 4, 0, 1],
-    11: [2, 3, 4, 1, 0],
+    11: [2, 3, 4, 0, 1],
     12: [3, 4, 1, 0, 2],
 }
 
 let enemyRangedProximityList: {[key: number]: number[]} = {
     0: [12, 9, 8, 11, 10, 7, 6, 5],
-    1: [9, 10, 5, 12, 8, 11, 6, 7],
+    1: [9, 5, 10, 12, 8, 11, 6, 7],
     2: [12, 8, 11, 7, 10, 6, 9, 5],
     3: [9, 5, 8, 12, 11, 10, 6, 7],
     4: [9, 5, 10, 6, 12, 11, 7, 8],
@@ -622,12 +622,15 @@ function processTurn(combatant: combatant) {
             }
 
             for(let spell of combatant.spells) {
-                if(spell.cooldown !== 0 && spell.cooldownRemaining <= 0) {
-                    log += `\tCasting spell ${spell.name}:\n`
-                    useSpell(combatant, spell);
-                }
-                else {
-                    spell.cooldownRemaining--;
+                // Have to check this each time, it's possible to die mid-turn to counterattacks
+                if(combatant.currentHealth > 0) {
+                    if(spell.cooldown !== 0 && spell.cooldownRemaining <= 0) {
+                        log += `\tCasting spell ${spell.name}:\n`
+                        useSpell(combatant, spell);
+                    }
+                    else {
+                        spell.cooldownRemaining--;
+                    }
                 }
             }
         }
