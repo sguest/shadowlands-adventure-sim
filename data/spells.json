@@ -7,7 +7,7 @@
         "effects": [
             {
                 "type": "heal",
-                "percentAmount": 0.05
+                "percentAmount": 5
             }
         ]
     },
@@ -18,7 +18,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1
+                "amount": 100
             }
         ]
     },
@@ -29,7 +29,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1
+                "amount": 100
             }
         ]
     },
@@ -40,7 +40,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1.5
+                "amount": 150
             }
         ]
     },
@@ -51,11 +51,11 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1.5
+                "amount": 150
             },
             {
                 "type": "heal",
-                "amount": 0.2,
+                "amount": 20,
                 "targets": "closest-ally"
             }
         ]
@@ -67,12 +67,12 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.5
+                "amount": 50
             },
             {
                 "type": "aura",
                 "duration": 3,
-                "attackFactor": 0.2,
+                "attackFactor": 20,
                 "targets": "self",
                 "helpful": true
             }
@@ -86,11 +86,11 @@
         "effects": [
             {
                 "type": "heal",
-                "amount": 0.25
+                "amount": 25
             },
             {
                 "type": "aura",
-                "healthBonusAmount": 0.2,
+                "healthBonusAmount": 20,
                 "duration": 2,
                 "helpful": true
             }
@@ -103,13 +103,13 @@
         "effects": [
             {
                 "type": "aura",
-                "damageTakenFactor": -0.1,
+                "damageTakenFactor": -10,
                 "duration": 1,
                 "helpful": true
             },
             {
                 "type": "aura",
-                "damageTakenFactor": -0.1,
+                "damageTakenFactor": -10,
                 "duration": 1,
                 "helpful": true,
                 "targets": "all-ranged-allies"
@@ -123,7 +123,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1.2
+                "amount": 120
             }
         ]
     },
@@ -137,12 +137,12 @@
                 "duration": 6,
                 "delay": 2,
                 "period": 2,
-                "amount": 0.1
+                "amount": 10
             },
             {
                 "type": "aura",
                 "duration": 6,
-                "attackFactor": -0.2
+                "attackFactor": -20
             }
         ]
     },
@@ -153,7 +153,7 @@
         "effects": [
             {
                 "type": "heal",
-                "amount": 1
+                "amount": 100
             }
         ]
     },
@@ -164,7 +164,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.75
+                "amount": 75
             }
         ]
     },
@@ -175,7 +175,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1.5
+                "amount": 150
             }
         ]
     },
@@ -187,7 +187,7 @@
             {
                 "type": "aura",
                 "duration": 3,
-                "attackBonusAmount": 0.2,
+                "attackBonusAmount": 20,
                 "helpful": true
             }
         ]
@@ -199,7 +199,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.3
+                "amount": 30
             }
         ]
     },
@@ -211,7 +211,7 @@
             {
                 "type": "aura",
                 "duration": -1,
-                "counterDamageAmount": 0.25
+                "counterDamageAmount": 25
             }
         ]
     },
@@ -222,7 +222,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1.2
+                "amount": 120
             }
         ]
     },
@@ -233,7 +233,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.6
+                "amount": 60
             }
         ]
     },
@@ -244,13 +244,13 @@
         "effects": [
             {
                 "type": "aura",
-                "attackFactor": 0.3,
+                "attackFactor": 30,
                 "duration": 3,
                 "helpful": true
             },
             {
                 "type": "damage",
-                "amount": 0.4,
+                "amount": 40,
                 "targets": "all-enemies"
             }
         ]
@@ -262,7 +262,7 @@
         "effects": [
             {
                 "type": "dot",
-                "amount": 0.4,
+                "amount": 40,
                 "duration": 2
             }
         ]
@@ -275,7 +275,7 @@
             {
                 "type": "aura",
                 "duration": -1,
-                "attackFactor": 0.2,
+                "attackFactor": 20,
                 "helpful": true
             }
         ]
@@ -288,7 +288,7 @@
             {
                 "type": "aura",
                 "duration": 3,
-                "attackBonusAmount": -0.02
+                "attackBonusAmount": -2
             }
         ],
         "comment": "This is supposed to reduce an enemy's attack by an amount equal to Blisswing's attack (i.e. attackBonusAmount -1), but seems to be bugged and reducing attack by much, much less if at all"
@@ -302,7 +302,7 @@
                 "type": "dot",
                 "duration": 3,
                 "delay": 1,
-                "amount": 0.3
+                "amount": 30
             }
         ]
     },
@@ -313,12 +313,12 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.4
+                "amount": 40
             },
             {
                 "type": "aura",
                 "duration": 2,
-                "attackFactor": -0.2
+                "attackFactor": -20
             }
         ]
     },
@@ -329,7 +329,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.9
+                "amount": 90
             }
         ]
     },
@@ -340,7 +340,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1.2
+                "amount": 120
             }
         ]
     },
@@ -351,7 +351,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1.4
+                "amount": 140
             }
         ]
     },
@@ -363,7 +363,7 @@
             {
                 "type": "aura",
                 "duration": 2,
-                "attackFactor": 1,
+                "attackFactor": 100,
                 "helpful": true
             }
         ]
@@ -375,12 +375,12 @@
         "effects": [
             {
                 "type": "heal",
-                "amount": 1
+                "amount": 100
             },
             {
                 "type": "aura",
                 "duration": 1,
-                "attackFactor": -0.1
+                "attackFactor": -10
             }
         ]
     },
@@ -391,7 +391,7 @@
         "effects": [
             {
                 "type":"damage",
-                "amount": 0.4
+                "amount": 40
             }
         ]
     },
@@ -403,7 +403,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 2
+                "amount": 200
             }
         ],
         "comment": "Description doesn't mention this being delayed, but logs show it is"
@@ -416,7 +416,7 @@
             {
                 "type": "aura",
                 "duration": 2,
-                "attackFactor": 0.5,
+                "attackFactor": 50,
                 "helpful": true
             }
         ]
@@ -428,7 +428,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.6
+                "amount": 60
             }
         ],
         "comment": "Description says it's supposed to apply a 50% damage dealt penalty. A 2nd effect does exist that applies a debuff, but it has no targets, meaning nothing happens"
@@ -440,7 +440,7 @@
         "effects": [
             {
                 "type": "heal",
-                "amount": 0.2
+                "amount": 20
             }
         ]
     },
@@ -453,7 +453,7 @@
                 "type": "dot",
                 "duration": 3,
                 "delay": 3,
-                "amount": 1.5
+                "amount": 150
             }
         ]
     },
@@ -465,7 +465,7 @@
             {
                 "type": "aura",
                 "duration": 2,
-                "attackFactor": 0.25
+                "attackFactor": 25
             }
         ]
     },
@@ -476,7 +476,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.3
+                "amount": 30
             }
         ]
     },
@@ -487,7 +487,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.75
+                "amount": 75
             }
         ]
     },
@@ -498,7 +498,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.75
+                "amount": 75
             }
         ]
     },
@@ -509,7 +509,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.5
+                "amount": 50
             }
         ]
     },
@@ -521,7 +521,7 @@
             {
                 "type": "aura",
                 "duration": 1,
-                "attackFactor": -0.75
+                "attackFactor": -75
             }
         ]
     },
@@ -532,7 +532,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 2
+                "amount": 200
             }
         ]
     },
@@ -543,13 +543,13 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.65
+                "amount": 65
             },
             {
                 "type": "dot",
                 "duration": 3,
                 "period": 3,
-                "amount": 0.5
+                "amount": 50
             }
         ]
     },
@@ -561,12 +561,12 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.2
+                "amount": 20
             },
             {
                 "type": "aura",
                 "duration": 1,
-                "attackFactor": -0.5
+                "attackFactor": -50
             }
         ]
     },
@@ -577,12 +577,12 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.75
+                "amount": 75
             },
             {
                 "type": "aura",
                 "duration": 2,
-                "attackFactor": -0.25
+                "attackFactor": -25
             }
         ]
     },
@@ -594,7 +594,7 @@
             {
                 "type": "aura",
                 "duration": 3,
-                "counterDamageAmount": 0.4,
+                "counterDamageAmount": 40,
                 "helpful": true
             }
         ]
@@ -607,7 +607,7 @@
             {
                 "type": "aura",
                 "duration": 1,
-                "damageTakenFactor": 0.25
+                "damageTakenFactor": 25
             }
         ]
     },
@@ -618,7 +618,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 0.5
+                "amount": 50
             }
         ]
     },
@@ -629,11 +629,11 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1
+                "amount": 100
             },
             {
                 "type": "heal",
-                "amount": 0.5,
+                "amount": 50,
                 "targets": "self"
             }
         ]
@@ -645,12 +645,12 @@
         "effects": [
             {
                 "type": "heal",
-                "amount": 1
+                "amount": 100
             },
             {
                 "type": "aura",
                 "duration": 2,
-                "attackFactor": 0.5
+                "attackFactor": 50
             }
         ]
     },
@@ -663,7 +663,7 @@
                 "type": "dot",
                 "duration": 2,
                 "period": 2,
-                "amount": 0.5
+                "amount": 50
             }
         ]
     },
@@ -674,12 +674,12 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1
+                "amount": 100
             },
             {
                 "type": "aura",
                 "duration": 1,
-                "attackFactor": -0.5
+                "attackFactor": -50
             }
         ]
     },
@@ -691,7 +691,7 @@
             {
                 "type": "aura",
                 "duration": 1,
-                "attackFactor": 0.5
+                "attackFactor": 50
             }
         ]
     },
@@ -702,7 +702,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1.5
+                "amount": 150
             }
         ]
     },
@@ -714,7 +714,7 @@
             {
                 "type": "aura",
                 "duration": 2,
-                "damageTakenFactor": -0.5
+                "damageTakenFactor": -50
             }
         ]
     },
@@ -727,17 +727,17 @@
             {
                 "type": "aura",
                 "duration": 2,
-                "attackBonusAmount": 2,
+                "attackBonusAmount": 200,
                 "helpful": true
             },
             {
                 "type": "aura",
                 "duration": 2,
-                "damageTakenBonusAmount": 0.3
+                "damageTakenBonusAmount": 30
             },
             {
                 "type": "damage",
-                "amount": 0.3,
+                "amount": 30,
                 "targets": "closest-enemy"
             }
         ]
@@ -749,7 +749,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1.2
+                "amount": 120
             }
         ]
     },
@@ -761,7 +761,7 @@
             {
                 "type": "aura",
                 "duration": 1,
-                "damageTakenFactor": -0.5
+                "damageTakenFactor": -50
             }
         ]
     },
@@ -772,7 +772,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1
+                "amount": 100
             }
         ]
     },
@@ -783,7 +783,7 @@
         "effects": [
             {
                 "type": "dot",
-                "amount": 0.3,
+                "amount": 30,
                 "duration": 3,
                 "delay": 3
             }
@@ -796,7 +796,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1.5
+                "amount": 150
             }
         ]
     },
@@ -808,7 +808,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 10
+                "amount": 1000
             }
         ]
     },
@@ -819,7 +819,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1.5
+                "amount": 150
             }
         ]
     },
@@ -830,7 +830,7 @@
         "effects": [
             {
                 "type": "damage",
-                "amount": 1
+                "amount": 100
             }
         ]
     }

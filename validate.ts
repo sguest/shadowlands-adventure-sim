@@ -303,8 +303,8 @@ function loadExtraData(baseData: combatantData, entries: combatantInfo[]): comba
 }
 
 function dealDamage(caster: combatant, target: combatant, amount: number, allowCounter?: boolean) {
-    let attackFactor = 1;
-    let damageTakenFactor = 1;
+    let attackFactor = 100;
+    let damageTakenFactor = 100;
     let damageTakenBonus = 0;
 
     let casterAuras = auras.filter(a => a.target === caster);
@@ -313,18 +313,18 @@ function dealDamage(caster: combatant, target: combatant, amount: number, allowC
     for(let aura of casterAuras) {
         if(!aura.isDot) {
             attackFactor += (aura as effectAura).attackFactor;
-            amount += Math.trunc((aura as effectAura).attackBonusAmount * aura.caster.attack);
+            amount += Math.trunc((aura as effectAura).attackBonusAmount * aura.caster.attack / 100);
         }
     }
 
     for(let aura of targetAuras) {
         if(!aura.isDot) {
             damageTakenFactor += (aura as effectAura).damageTakenFactor;
-            damageTakenBonus += Math.trunc((aura as effectAura).damageTakenBonusAmount * aura.caster.attack);
+            damageTakenBonus += Math.trunc((aura as effectAura).damageTakenBonusAmount * aura.caster.attack / 100);
         }
     }
 
-    amount = Math.max(Math.floor(Math.floor(amount * attackFactor) * damageTakenFactor) + damageTakenBonus, 0);
+    amount = Math.max(Math.floor(Math.floor(amount * attackFactor / 100) * damageTakenFactor / 100) + damageTakenBonus, 0);
 
     if(!target) {
         console.log('Caster: ' + JSON.stringify(caster) + ' amount: ' + amount);
@@ -350,7 +350,7 @@ function dealDamage(caster: combatant, target: combatant, amount: number, allowC
         let counterDamageAmount = 0;
         for(let aura of auras.filter(a => a.target === target)) {
             if(!aura.isDot) {
-                counterDamageAmount += Math.trunc((aura as effectAura).counterDamageAmount * target.attack);
+                counterDamageAmount += Math.trunc((aura as effectAura).counterDamageAmount * target.attack / 100);
             }
         }
         if(counterDamageAmount > 0) {
@@ -499,16 +499,16 @@ function getTargets(caster: combatant, targetType: string, spellId: number, effe
 
 const effectFunctions: {[key: string]: (caster: combatant, target: combatant, effect: spellEffect) => void} = {
     damage: (caster, target, effect: damageSpellEffect) => {
-        let damageAmount = Math.floor(effect.amount * (caster.attack * 100) / 100);
+        let damageAmount = Math.floor(effect.amount * caster.attack / 100);
         dealDamage(caster, target, damageAmount, true);
     },
     heal: (caster, target, effect: healSpellEffect) => {
         let healAmount = 0;
         if(effect.amount) {
-            healAmount = effect.amount * caster.attack;
+            healAmount = effect.amount * caster.attack / 100;
         }
         else if(effect.percentAmount) {
-            healAmount = effect.percentAmount * target.maxHealth
+            healAmount = effect.percentAmount * target.maxHealth / 100;
         }
         else {
             log += 'ERROR: Invalid healing spell without amount or percent amount specified\n';
@@ -518,7 +518,7 @@ const effectFunctions: {[key: string]: (caster: combatant, target: combatant, ef
         log += `\tHealing ${target.name} (${target.boardIndex}) for ${healAmount}\n`;
     },
     dot: (caster, target, effect: dotSpellEffect) => {
-        let damageAmount = Math.floor(effect.amount * caster.attack);
+        let damageAmount = Math.floor(effect.amount * caster.attack / 100);
         let aura: dotAura = {
             isDot: true,
             target: target,
@@ -550,7 +550,7 @@ const effectFunctions: {[key: string]: (caster: combatant, target: combatant, ef
             healthBonusAmount: effect.healthBonusAmount || 0,
             counterDamageAmount: effect.counterDamageAmount || 0,
         }
-        let maxHealthAmount = Math.trunc(caster.attack * aura.healthBonusAmount);
+        let maxHealthAmount = Math.trunc(caster.attack * aura.healthBonusAmount / 100);
         target.maxHealth += maxHealthAmount;
         target.currentHealth += maxHealthAmount;
         log += `\tAdding aura to ${target.name} (${target.boardIndex})\n`;
@@ -589,7 +589,7 @@ function processTurn(combatant: combatant) {
                     if(aura.delay === 0) {
                         if(aura.target.currentHealth > 0) {
                             log += '\tDot tick:\n'
-                            dealDamage(aura.caster, aura.target, aura.amount);    
+                            dealDamage(aura.caster, aura.target, aura.amount);
                         }
                         aura.delay = aura.period;
                     }
@@ -600,7 +600,7 @@ function processTurn(combatant: combatant) {
                 if(aura.duration === 0) {
                     // Max health is only removed when aura fades if target is still alive. Feels like a bug, but that's how logs show it
                     if(!aura.isDot && aura.target.currentHealth > 0) {
-                        aura.target.maxHealth -= Math.trunc(aura.caster.attack * (aura as effectAura).healthBonusAmount);
+                        aura.target.maxHealth -= Math.trunc(aura.caster.attack * (aura as effectAura).healthBonusAmount / 100);
                     }
                     auras.splice(auraId, 1);
                     log += '\tAura fades\n'
