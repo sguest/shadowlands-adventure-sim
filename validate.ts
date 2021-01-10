@@ -142,8 +142,8 @@ let enemyRangedProximityList: {[key: number]: number[]} = {
     0: [12, 9, 8, 11, 10, 7, 6, 5],
     1: [9, 10, 5, 12, 8, 11, 6, 7],
     2: [12, 8, 11, 7, 10, 6, 9, 5],
-    3: [9, 8, 12, 5, 11, 6, 7, 10],
-    4: [9, 5, 10, 6, 12, 11, 8, 7],
+    3: [9, 5, 8, 12, 11, 6, 7, 10],
+    4: [9, 5, 10, 6, 12, 11, 7, 8],
     5: [4, 1, 0, 3, 2],
     6: [4, 1, 0, 3, 2],
     7: [2, 0, 1, 4, 3],
@@ -155,19 +155,19 @@ let enemyRangedProximityList: {[key: number]: number[]} = {
 }
 
 let allyProximityList: {[key: number]: number[]} = {
-    0: [2, 3, 1, 4],
-    1: [3, 4, 0, 2],
-    2: [3, 0, 4, 1],
-    3: [2, 4, 0, 1],
-    4: [3, 1, 2, 0],
-    5: [6, 9, 10, 7, 11, 8, 12],
-    6: [5, 7, 10, 9, 11, 8, 12],
-    7: [6, 8, 11, 10, 12, 5, 9],
-    8: [7, 12, 11, 6, 10, 5, 9],
-    9: [5, 10, 6, 7, 11, 8, 12],
-    10: [6, 9, 11, 5, 7, 8, 12],
-    11: [7, 10, 12, 6, 8, 5, 9],
-    12: [8, 11, 7, 6, 10, 5, 9],
+    0: [2, 3, 1, 4, 0],
+    1: [3, 4, 0, 2, 1],
+    2: [3, 0, 4, 1, 2],
+    3: [2, 4, 0, 1, 3],
+    4: [3, 1, 2, 0, 4],
+    5: [6, 9, 10, 7, 11, 8, 12, 5],
+    6: [5, 7, 10, 9, 11, 8, 12, 6],
+    7: [6, 8, 11, 10, 12, 5, 9, 7],
+    8: [7, 12, 11, 6, 10, 5, 9, 8],
+    9: [5, 10, 6, 7, 11, 8, 12, 9],
+    10: [6, 9, 11, 5, 7, 8, 12, 10],
+    11: [7, 10, 12, 6, 8, 5, 9, 11],
+    12: [8, 11, 7, 6, 10, 5, 9, 12],
 }
 
 let enemyAdjacencyList: {[key: number]: number[][]} = {
@@ -216,7 +216,23 @@ let linePositions: {[key: number]: number[]} = {
     10: [6, 10],
     11: [7, 11],
     12: [8, 12],
-}
+};
+
+let conePositions: {[key: number]: number[]} = {
+    0: [0],
+    1: [1],
+    2: [0, 2],
+    3: [0, 1, 3],
+    4: [1, 4],
+    5: [5, 9, 10],
+    6: [6, 9, 10, 11],
+    7: [7, 10, 11, 12],
+    8: [8, 11, 12],
+    9: [9],
+    10: [10],
+    11: [11],
+    12: [12],
+};
 
 function mapSpell(spellId: number): combatSpell {
     let spellInfo = (spellData as any)[spellId];
@@ -317,11 +333,12 @@ function dealDamage(caster: combatant, target: combatant, amount: number, allowC
     target.currentHealth = Math.max(0, target.currentHealth - amount);
 
     if(target.currentHealth === 0) {
-        log += `\t${target.name} (${target.boardIndex}) dies\n`
+        log += `\t${target.name} (${target.boardIndex}) dies\n`;
         let auraId = 0;
         while(auraId < auras.length) {
             let aura = auras[auraId];
             if(aura.caster === target && aura.duration === -1) {
+                log += `\tAura cast by ${aura.caster.name} (${aura.caster.boardIndex}) faded from ${aura.target.name} (${aura.target.boardIndex})\n`;
                 auras.splice(auraId, 1);
             }
             else {
@@ -408,7 +425,8 @@ const targetFunctions: {[key: string]: (caster: combatant, spellId?: number, eff
         }
     },
     'closest-enemy-cone': (caster) => {
-        return targetFunctions['closest-enemy'](caster);    //This needs more work, once data is available
+        let closest = targetFunctions['closest-enemy'](caster);
+        return conePositions[closest[0].boardIndex].filter(isValidTargetId).map(e => combatants[e]);
     },
     'closest-enemy-line': (caster) => {
         let closestEnemy = targetFunctions['closest-enemy'](caster)[0];
