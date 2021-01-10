@@ -596,7 +596,8 @@ function processTurn(combatant: combatant) {
                     aura.duration--;
                 }
                 if(aura.duration === 0) {
-                    if(!aura.isDot) {
+                    // Max health is only removed when aura fades if target is still alive. Feels like a bug, but that's how logs show it
+                    if(!aura.isDot && aura.target.currentHealth > 0) {
                         aura.target.maxHealth -= Math.trunc(aura.caster.attack * (aura as effectAura).healthBonusAmount);
                     }
                     auras.splice(auraId, 1);
