@@ -346,7 +346,7 @@ function dealDamage(caster: combatant, target: combatant, amount: number, allowC
             }
         }
     }
-    else if(allowCounter) {
+    if(allowCounter) {
         let counterDamageAmount = 0;
         for(let aura of auras.filter(a => a.target === target)) {
             if(!aura.isDot) {
