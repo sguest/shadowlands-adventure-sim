@@ -429,13 +429,9 @@
             {
                 "type": "damage",
                 "amount": 0.6
-            },
-            {
-                "type": "aura",
-                "duration": 1,
-                "attackFactor": -0.5
             }
-        ]
+        ],
+        "comment": "Description says it's supposed to apply a 50% damage dealt penalty. A 2nd effect does exist that applies a debuff, but it has no targets, meaning nothing happens"
     },
     "126": {
         "name": "Possessive Healing",
