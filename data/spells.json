@@ -803,7 +803,7 @@
         "name": "Charged Javelin",
         "cooldown": 5,
         "targets": "closest-enemy",
-        "delay": 5,
+        "delay": 4,
         "effects": [
             {
                 "type": "damage",
