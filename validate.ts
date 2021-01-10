@@ -499,7 +499,7 @@ function getTargets(caster: combatant, targetType: string, spellId: number, effe
 
 const effectFunctions: {[key: string]: (caster: combatant, target: combatant, effect: spellEffect) => void} = {
     damage: (caster, target, effect: damageSpellEffect) => {
-        let damageAmount = Math.floor(effect.amount * caster.attack);
+        let damageAmount = Math.floor(effect.amount * (caster.attack * 100) / 100);
         dealDamage(caster, target, damageAmount, true);
     },
     heal: (caster, target, effect: healSpellEffect) => {
