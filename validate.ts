@@ -587,8 +587,10 @@ function processTurn(combatant: combatant) {
                 if(aura.isDot) {
                     aura.delay--;
                     if(aura.delay === 0) {
-                        log += '\tDot tick:\n'
-                        dealDamage(aura.caster, aura.target, aura.amount);
+                        if(aura.target.currentHealth > 0) {
+                            log += '\tDot tick:\n'
+                            dealDamage(aura.caster, aura.target, aura.amount);    
+                        }
                         aura.delay = aura.period;
                     }
                 }
