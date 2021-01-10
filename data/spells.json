@@ -557,6 +557,7 @@
         "name": "Viscous Slash",
         "cooldown": 3,
         "targets": "all-melee-enemies",
+        "delay": 2,
         "effects": [
             {
                 "type": "damage",
