@@ -139,7 +139,7 @@ let enemyProximityList: {[key: number]: number[]} = {
 }
 
 let enemyRangedProximityList: {[key: number]: number[]} = {
-    0: [12, 9, 8, 11, 7, 10, 6, 5],
+    0: [12, 9, 8, 11, 10, 7, 6, 5],
     1: [9, 10, 5, 12, 8, 11, 6, 7],
     2: [12, 8, 11, 7, 10, 6, 9, 5],
     3: [9, 8, 12, 5, 11, 7, 10, 6],
@@ -286,7 +286,7 @@ function loadExtraData(baseData: combatantData, entries: combatantInfo[]): comba
     return null;
 }
 
-function dealDamage(caster: combatant, target: combatant, amount: number) {
+function dealDamage(caster: combatant, target: combatant, amount: number, allowCounter?: boolean) {
     let attackFactor = 1;
     let damageTakenFactor = 1;
     let damageTakenBonus = 0;
@@ -327,6 +327,18 @@ function dealDamage(caster: combatant, target: combatant, amount: number) {
             else {
                 auraId++;
             }
+        }
+    }
+    else if(allowCounter) {
+        let counterDamageAmount = 0;
+        for(let aura of auras.filter(a => a.target === target)) {
+            if(!aura.isDot) {
+                counterDamageAmount += Math.trunc((aura as effectAura).counterDamageAmount * target.attack);
+            }
+        }
+        if(counterDamageAmount > 0) {
+            log += '\tCounterattack\n';
+            dealDamage(target, caster, counterDamageAmount);
         }
     }
 }
@@ -425,6 +437,21 @@ const targetFunctions: {[key: string]: (caster: combatant, spellId?: number, eff
     'all-other-allies': (caster) => {
         return targetFunctions['all-allies'](caster).filter(a => a !== caster);
     },
+    'all-other-melee-allies': caster => {
+        let allAllies = targetFunctions['all-allies'](caster);
+        let meleeAllies = allAllies.filter(a => meleePositions.indexOf(a.boardIndex) !== -1);
+        if(meleeAllies.length === 1 && meleeAllies[0] === caster) {
+            return meleeAllies;
+        }
+        meleeAllies = meleeAllies.filter(a => a !== caster);
+        if(meleeAllies.length) {
+            return meleeAllies;
+        }
+        if(allAllies.length === 1 && allAllies[0] === caster) {
+            return allAllies;
+        }
+        return allAllies.filter(a => a !== caster);
+    },
     'all-adjacent-allies': (caster) => {
         let list = allyAdjacencyList[caster.boardIndex];
         for(let subList of list) {
@@ -455,7 +482,7 @@ function getTargets(caster: combatant, targetType: string, spellId: number, effe
 const effectFunctions: {[key: string]: (caster: combatant, target: combatant, effect: spellEffect) => void} = {
     damage: (caster, target, effect: damageSpellEffect) => {
         let damageAmount = Math.floor(effect.amount * caster.attack);
-        dealDamage(caster, target, damageAmount);
+        dealDamage(caster, target, damageAmount, true);
     },
     heal: (caster, target, effect: healSpellEffect) => {
         let healAmount = 0;
@@ -513,7 +540,7 @@ const effectFunctions: {[key: string]: (caster: combatant, target: combatant, ef
     },
 };
 
-function useSpell(caster: combatant, spell: combatSpell, allowCounter?: boolean) {
+function useSpell(caster: combatant, spell: combatSpell) {
     let spellTargetType = spell.targets;
 
     for(let effectIndex = 0; effectIndex < spell.effects.length; effectIndex++) {
@@ -527,19 +554,6 @@ function useSpell(caster: combatant, spell: combatSpell, allowCounter?: boolean)
 
         for(let target of effectTargets) {
             effectFunctions[effect.type](caster, target, effect);
-
-            if(allowCounter) {
-                let counterDamageAmount = 0;
-                for(let aura of auras.filter(a => a.target === target)) {
-                    if(!aura.isDot) {
-                        counterDamageAmount += Math.trunc((aura as effectAura).counterDamageAmount * target.attack);
-                    }
-                }
-                if(counterDamageAmount > 0) {
-                    log += '\tCounterattack\n';
-                    dealDamage(target, caster, counterDamageAmount);
-                }
-            }
         }
     }
     spell.cooldownRemaining = spell.cooldown;
@@ -581,11 +595,11 @@ function processTurn(combatant: combatant) {
     if(combatant.currentHealth > 0) {
         if(combatant.melee) {
             log +='\tMelee attack:\n'
-            useSpell(combatant, meleeAttack, true);
+            useSpell(combatant, meleeAttack);
         }
         else {
             log +='\tRanged attack:\n'
-            useSpell(combatant, rangedAttack, true);
+            useSpell(combatant, rangedAttack);
         }
 
         for(let spell of combatant.spells) {
