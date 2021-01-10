@@ -324,7 +324,7 @@ function dealDamage(caster: combatant, target: combatant, amount: number, allowC
         }
     }
 
-    amount = Math.max(Math.floor(amount * attackFactor * damageTakenFactor) + damageTakenBonus, 0);
+    amount = Math.max(Math.floor(Math.floor(amount * attackFactor) * damageTakenFactor) + damageTakenBonus, 0);
 
     if(!target) {
         console.log('Caster: ' + JSON.stringify(caster) + ' amount: ' + amount);
