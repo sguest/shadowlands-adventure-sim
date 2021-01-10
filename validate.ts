@@ -140,7 +140,7 @@ let enemyProximityList: {[key: number]: number[]} = {
 
 let enemyRangedProximityList: {[key: number]: number[]} = {
     0: [12, 9, 8, 11, 10, 7, 6, 5],
-    1: [9, 5, 10, 12, 8, 11, 6, 7],
+    1: [9, 5, 10, 12, 11, 6, 8, 7],
     2: [12, 8, 11, 7, 10, 6, 9, 5],
     3: [9, 5, 8, 12, 11, 10, 6, 7],
     4: [9, 5, 10, 6, 12, 11, 7, 8],
