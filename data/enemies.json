@@ -175,6 +175,16 @@
             "name": "Umbral Phallynx",
             "melee": true,
             "spells": [155]
+        },
+        {
+            "name": "Coalesced Stygia",
+            "melee": true,
+            "spells": [232]
+        },
+        {
+            "name": "Crystalline Stygia",
+            "melee": true,
+            "spells": [233]
         }
     ]
 }

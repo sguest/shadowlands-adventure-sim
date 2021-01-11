@@ -718,6 +718,29 @@
             }
         ]
     },
+    "232": {
+        "name": "Aura of Death",
+        "cooldown": 4,
+        "targets": "random-enemy",
+        "effects": [
+            {
+                "type": "aura",
+                "duration": 3,
+                "attackFactor": -50
+            }
+        ]
+    },
+    "233": {
+        "name": "Teeth of the Maw",
+        "cooldown": 3,
+        "targets": "closest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 150
+            }
+        ]
+    },
     "244": {
         "name": "Meatball Mad!",
         "cooldown": 2,
@@ -831,6 +854,17 @@
             {
                 "type": "damage",
                 "amount": 100
+            }
+        ]
+    },
+    "301": {
+        "name": "Bombardment of Dread",
+        "cooldown": 1,
+        "targets": "random-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "percentAmount": 10
             }
         ]
     }

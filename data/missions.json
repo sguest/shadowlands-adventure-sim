@@ -379,5 +379,30 @@
                 "position": 12
             }
         ]
+    },
+    "2298": {
+        "name": "Maw: Coalescing Stygia",
+        "enemies": [
+            {
+                "name": "Coalesced Stygia",
+                "position": 6
+            },
+            {
+                "name": "Coalesced Stygia",
+                "position": 7
+            },
+            {
+                "name": "Crystalline Stygia",
+                "position": 9
+            },
+            {
+                "name": "Crystalline Stygia",
+                "position": 10
+            },
+            {
+                "name": "Crystalline Stygia",
+                "position": 12
+            }
+        ]
     }
 }
