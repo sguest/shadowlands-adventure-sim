@@ -61,8 +61,14 @@ interface missionInfo {
     name: string
 }
 
+interface missionEnvironment {
+    name: string,
+    autoCombatSpellInfo: spellInfo
+}
+
 interface missionData {
     missionID: number
+    environment?: missionEnvironment
     missionInfo: missionInfo
     result: missionResult
     followers: {[key: string]: followerData}

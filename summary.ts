@@ -1,6 +1,6 @@
 /// <reference path="./@types/imported.d.ts" />
 import * as readline from 'readline';
-import { parseFollowers, parseEnemies, combatantData } from './util/parser';
+import { parseFollowers, parseEnemies, combatantData, spellData } from './util/parser';
 
 interface enhancedTargetInfo {
     name: string
@@ -27,12 +27,14 @@ function displayName(combatant: combatantData) {
 
 function printSummary(combatants: {[key: number]: combatantData}) {
     for(let boardIndex in combatants) {
-        let combatant = combatants[boardIndex];
-        if(combatant.currentHealth <= 0) {
-            console.log(`\t${displayName(combatant)} is dead`)
-        }
-        else {
-            console.log(`\t${displayName(combatant)} has ${combatant.currentHealth}/${combatant.maxHealth} health`);
+        if(boardIndex !== '-1') {
+            let combatant = combatants[boardIndex];
+            if(combatant.currentHealth <= 0) {
+                console.log(`\t${displayName(combatant)} is dead`)
+            }
+            else {
+                console.log(`\t${displayName(combatant)} has ${combatant.currentHealth}/${combatant.maxHealth} health`);
+            }
         }
     }
 }
@@ -44,6 +46,23 @@ function handleEnd() {
     let enemies = parseEnemies(mission);
 
     let combatants = {...followers, ...enemies};
+
+    if(mission.environment) {
+        let environmentSpells: {[key: number]: spellData} = {};
+        let spellId = mission.environment.autoCombatSpellInfo.autoCombatSpellID;
+        environmentSpells[spellId] = {
+            id: spellId,
+            name: mission.environment.autoCombatSpellInfo.name
+        }
+        combatants[-1] = {
+            name: `${mission.environment.name} (Environment)`,
+            boardIndex: -1,
+            spells: environmentSpells,
+            maxHealth: 0,
+            currentHealth: 0,
+            attack: 0,
+        }
+    }
 
     printSummary(combatants);
     console.log('');
