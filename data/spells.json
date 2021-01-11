@@ -288,10 +288,10 @@
             {
                 "type": "aura",
                 "duration": 3,
-                "attackBonusAmount": -2
+                "attackBonusAmount": -1
             }
         ],
-        "comment": "This is supposed to reduce an enemy's attack by an amount equal to Blisswing's attack (i.e. attackBonusAmount -1), but seems to be bugged and reducing attack by much, much less if at all"
+        "comment": "This is supposed to reduce an enemy's attack by an amount equal to Blisswing's attack (i.e. attackBonusAmount = -100), but seems to be bugged and reducing attack by much, much less if at all"
     },
     "94": {
         "name": "Icespore Spear",
