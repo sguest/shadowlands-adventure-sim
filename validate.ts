@@ -18,7 +18,8 @@ interface combatantInfo {
 
 interface damageSpellEffect {
     type: 'damage'
-    amount: number
+    amount?: number
+    percentAmount?: number
     targets?: string
 }
 
@@ -511,7 +512,13 @@ function getTargets(caster: combatant, targetType: string, spellId: number, effe
 
 const effectFunctions: {[key: string]: (caster: combatant, target: combatant, effect: spellEffect) => void} = {
     damage: (caster, target, effect: damageSpellEffect) => {
-        let damageAmount = Math.floor(effect.amount * caster.attack / 100);
+        let damageAmount = 0;
+        if(effect.amount) {
+            damageAmount = Math.floor(effect.amount * caster.attack / 100);
+        }
+        else if(effect.percentAmount) {
+            damageAmount = Math.floor(effect.percentAmount * target.maxHealth / 100);
+        }
         dealDamage(caster, target, damageAmount, true);
     },
     heal: (caster, target, effect: healSpellEffect) => {
@@ -710,6 +717,19 @@ async function validateFile(fileName: string) {
         }
     }
 
+    let environment:combatant = null;
+    if(mission.environment) {
+        environment = {
+            name: `${mission.environment.name} (Environment)`,
+            spells: [mapSpell(mission.environment.autoCombatSpellInfo.autoCombatSpellID)],
+            boardIndex: -1,
+            melee: false,
+            attack: 0,
+            currentHealth: 0,
+            maxHealth: 0,
+        }
+    }
+
     let missingMission = false;
     if(!(missionData as any)[mission.missionID]) {
         missingMission = true;
@@ -782,6 +802,12 @@ async function validateFile(fileName: string) {
 
         for(let enemy of enemyOrder) {
             processTurn(enemy);
+        }
+
+        if(environment) {
+            log += 'Starting environment effects\n';
+            log += `\tCasting spell ${environment.spells[0].name}`;
+            useSpell(environment, environment.spells[0]);
         }
 
         finished = checkFinished();
