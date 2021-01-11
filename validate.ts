@@ -326,14 +326,14 @@ function dealDamage(caster: combatant, target: combatant, amount: number, allowC
     for(let aura of casterAuras) {
         if(!aura.isDot) {
             attackFactor += (aura as effectAura).attackFactor;
-            amount += Math.trunc((aura as effectAura).attackBonusAmount * aura.caster.attack / 100);
+            amount += (aura as effectAura).attackBonusAmount * aura.caster.attack / 100;
         }
     }
 
     for(let aura of targetAuras) {
         if(!aura.isDot) {
             damageTakenFactor += (aura as effectAura).damageTakenFactor;
-            damageTakenBonus += Math.trunc((aura as effectAura).damageTakenBonusAmount * aura.caster.attack / 100);
+            damageTakenBonus += (aura as effectAura).damageTakenBonusAmount * aura.caster.attack / 100;
         }
     }
 
