@@ -156,9 +156,6 @@ function handleEnd() {
                     break;
                 case 9:
                     console.log(`${casterName} dealt a killing blow`);
-                    if(event.effectIndex !== 0) {
-                        console.log(`\tEFFECT INDEX IS ${event.effectIndex} NOT ZERO`);
-                    }
                     for(let target of targets) {
                         console.log(`\t${target.name} died`);
                     }
