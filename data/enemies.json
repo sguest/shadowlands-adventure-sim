@@ -185,6 +185,16 @@
             "name": "Crystalline Stygia",
             "melee": true,
             "spells": [233]
+        },
+        {
+            "name": "Nirvaska the Summoner",
+            "melee": true,
+            "spells": [219]
+        },
+        {
+            "name": "Fleshcrafted Juggernaut",
+            "melee": true,
+            "spells": [220]
         }
     ]
 }

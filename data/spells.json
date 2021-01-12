@@ -714,7 +714,36 @@
             {
                 "type": "aura",
                 "duration": 2,
-                "damageTakenFactor": -50
+                "damageTakenFactor": -50,
+                "helpful": true
+            }
+        ]
+    },
+    "219": {
+        "name": "Necrotic Healing",
+        "cooldown": 6,
+        "targets": "closest-ally",
+        "effects": [
+            {
+                "type": "heal",
+                "amount": 200
+            },
+            {
+                "type": "aura",
+                "duration": 2,
+                "damageTakenFactor": -50,
+                "helpful": true
+            }
+        ]
+    },
+    "220": {
+        "name": "Wild Slice",
+        "cooldown": 3,
+        "targets": "all-melee-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 100
             }
         ]
     },
