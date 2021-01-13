@@ -299,7 +299,7 @@
             {
                 "type": "aura",
                 "duration": 3,
-                "attackBonusAmount": -1
+                "attackBonusAmount": -0.75
             }
         ],
         "comment": "This is supposed to reduce an enemy's attack by an amount equal to Blisswing's attack (i.e. attackBonusAmount = -100), but seems to be bugged and reducing attack by much, much less if at all"
