@@ -146,6 +146,17 @@
             }
         ]
     },
+    "64": {
+        "name": "Massive Rumble",
+        "cooldown": 2,
+        "targets": "all-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 150
+            }
+        ]
+    },
     "71": {
         "name": "Revitalizing Vines",
         "cooldown": 2,
@@ -444,6 +455,17 @@
             }
         ]
     },
+    "127": {
+        "name": "Nibble",
+        "cooldown": 4,
+        "targets": "all-melee-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 60
+            }
+        ]
+    },
     "136": {
         "name": "Searing Jaws",
         "cooldown": 4,
@@ -599,6 +621,17 @@
             }
         ]
     },
+    "175": {
+        "name": "Lash Out",
+        "cooldown": 3,
+        "targets": "random-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 120
+            }
+        ]
+    },
     "176": {
         "name": "Arrogant Denial",
         "cooldown": 3,
@@ -664,6 +697,33 @@
                 "duration": 2,
                 "period": 2,
                 "amount": 50
+            }
+        ]
+    },
+    "188": {
+        "name": "Angry Smash",
+        "cooldown": 3,
+        "targets": "closest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 50
+            },
+            {
+                "type": "aura",
+                "duration": 1,
+                "attackFactor": -50
+            }
+        ]
+    },
+    "189": {
+        "name": "Angry Bash",
+        "cooldown": 3,
+        "targets": "closest-enemy",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 200
             }
         ]
     },
@@ -802,6 +862,46 @@
             {
                 "type": "damage",
                 "amount": 120
+            }
+        ]
+    },
+    "252": {
+        "name": "Viscous Sweep",
+        "cooldown": 4,
+        "targets": "all-adjacent-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 60
+            },
+            {
+                "type": "aura",
+                "duration": 2,
+                "damageTakenFactor": 25
+            }
+        ]
+    },
+    "253": {
+        "name": "Drust Claws",
+        "cooldown": 3,
+        "targets": "all-melee-enemies",
+        "effects": [
+            {
+                "type": "damage",
+                "amount": 75
+            }
+        ]
+    },
+    "254": {
+        "name": "Drust Throns",
+        "cooldown": 3,
+        "targets": "all-other-allies",
+        "delay": 2,
+        "effects": [
+            {
+                "type": "aura",
+                "duration": 3,
+                "counterDamageAmount": 100
             }
         ]
     },

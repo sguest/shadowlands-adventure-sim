@@ -42,6 +42,23 @@
             }
         ]
     },
+    "2190": {
+        "name": "Deifir Returns",
+        "enemies": [
+            {
+                "name": "Gormling Nibbler",
+                "position": 5
+            },
+            {
+                "name": "Deifir the Untamed",
+                "position": 6
+            },
+            {
+                "name": "Gormling Nibbler",
+                "position": 8
+            }
+        ]
+    },
     "2196": {
         "name": "Campaign: Rescue the Runelight Leaper",
         "enemies": [
@@ -258,6 +275,31 @@
             }
         ]
     },
+    "2238": {
+        "name": "Illicit Celebrations",
+        "enemies": [
+            {
+                "name": "Party Animal",
+                "position": 5
+            },
+            {
+                "name": "Party Animal",
+                "position": 6
+            },
+            {
+                "name": "Party Animal",
+                "position": 7
+            },
+            {
+                "name": "Party Animal",
+                "position": 8
+            },
+            {
+                "name": "Privileged Contributor",
+                "position": 10
+            }
+        ]
+    },
     "2240": {
         "name": "Solace for Souls",
         "enemies": [
@@ -317,6 +359,27 @@
             }
         ]
     },
+    "2248": {
+        "name": "Campaign: Big Shiny and Friends",
+        "enemies": [
+            {
+                "name": "Faithful Dredger",
+                "position": 5
+            },
+            {
+                "name": "Big Shiny",
+                "position": 6
+            },
+            {
+                "name": "Faithful Dredger",
+                "position": 7
+            },
+            {
+                "name": "Faithful Dredger",
+                "position": 8
+            }
+        ]
+    },
     "2276": {
         "name": "Blighted Times",
         "enemies": [
@@ -335,6 +398,31 @@
             {
                 "name": "Blighted Overseer",
                 "position": 7
+            }
+        ]
+    },
+    "2277": {
+        "name": "Invasive Action",
+        "enemies": [
+            {
+                "name": "Invasive Creeper",
+                "position": 5
+            },
+            {
+                "name": "Ingra Krazic",
+                "position": 6
+            },
+            {
+                "name": "Invasive Creeper",
+                "position": 7
+            },
+            {
+                "name": "Invasive Creeper",
+                "position": 8
+            },
+            {
+                "name": "Invasive Lasher",
+                "position": 10
             }
         ]
     },

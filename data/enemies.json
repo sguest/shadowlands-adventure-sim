@@ -195,6 +195,50 @@
             "name": "Fleshcrafted Juggernaut",
             "melee": true,
             "spells": [220]
+        },
+        {
+            "name": "Invasive Creeper",
+            "melee": true,
+            "spells": [
+                253
+            ]
+        },
+        {
+            "name": "Ingra Krazic",
+            "melee": true,
+            "spells": [
+                252
+            ]
+        },
+        {
+            "name": "Invasive Lasher",
+            "melee": false,
+            "spells": [254]
+        },
+        {
+            "name": "Party Animal",
+            "melee": true,
+            "spells": [175]
+        },
+        {
+            "name": "Gormling Nibbler",
+            "melee": true,
+            "spells": [127]
+        },
+        {
+            "name": "Deifir the Untamed",
+            "melee": true,
+            "spells": [64]
+        },
+        {
+            "name": "Faithful Dredger",
+            "melee": true,
+            "spells": [189]
+        },
+        {
+            "name": "Big Shiny",
+            "melee": true,
+            "spells": [188]
         }
     ]
 }
