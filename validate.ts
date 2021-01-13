@@ -621,6 +621,7 @@ function processTurn(combatant: combatant) {
                     if(!aura.isDot && aura.target.currentHealth > 0) {
                         aura.target.maxHealth -= Math.trunc(aura.caster.attack * (aura as effectAura).healthBonusAmount / 100);
                     }
+                    aura.target.currentHealth = Math.min(aura.target.currentHealth, aura.target.maxHealth);
                     auras.splice(auraId, 1);
                     log += '\tAura fades\n'
                 }
