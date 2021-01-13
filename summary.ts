@@ -47,6 +47,11 @@ function handleEnd() {
 
     let combatants = {...followers, ...enemies};
 
+    let allSpells: {[key: string]: spellData} = {};
+    for(let id in combatants) {
+        allSpells = {...allSpells, ...combatants[id].spells};
+    }
+
     if(mission.environment) {
         let environmentSpells: {[key: number]: spellData} = {};
         let spellId = mission.environment.autoCombatSpellInfo.autoCombatSpellID;
@@ -54,6 +59,7 @@ function handleEnd() {
             id: spellId,
             name: mission.environment.autoCombatSpellInfo.name
         }
+        allSpells[spellId] = environmentSpells[spellId];
         combatants[-1] = {
             name: `${mission.environment.name} (Environment)`,
             boardIndex: -1,
@@ -81,7 +87,7 @@ function handleEnd() {
                     combatants[target.boardIndex].maxHealth = target.maxHealth;
                 }
             }
-            let spell = caster.spells[event.spellID];
+            let spell = allSpells[event.spellID];
 
             let auraType: string;
             if(event.auraType === 0) {
